@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pomelo404.com";
+const siteUrl = "https://www.pomelo404.com";
 
 const title = "pomelo404 — Diseño y desarrollo web en Next.js";
 const description =
@@ -64,24 +64,10 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/og-pomelo404-primary.png",
+        url: "/og-pomelo404-v2.png",
         width: 1200,
         height: 630,
         alt: "pomelo404 — Sitios que hacen click",
-        type: "image/png",
-      },
-      {
-        url: "/og-pomelo404-neon.png",
-        width: 1200,
-        height: 630,
-        alt: "pomelo404 — Ideas claras, webs con pulso",
-        type: "image/png",
-      },
-      {
-        url: "/og-pomelo404-editorial.png",
-        width: 1200,
-        height: 630,
-        alt: "pomelo404 — Estrategia, diseño y código",
         type: "image/png",
       },
     ],
@@ -90,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/og-pomelo404-primary.png"],
+    images: ["/og-pomelo404-v2.png"],
   },
   robots: {
     index: true,
@@ -121,7 +107,7 @@ const structuredData = {
   name: "pomelo404",
   url: siteUrl,
   logo: `${siteUrl}/pomelo404-pixel-iso.png`,
-  image: `${siteUrl}/og-pomelo404-primary.png`,
+  image: `${siteUrl}/og-pomelo404-v2.png`,
   email: "hola@pomelo404.com",
   description,
   address: {
