@@ -100,6 +100,12 @@ input {
 .nav-cta:hover span {
   transform: rotate(45deg);
 }
+.arrow {
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant-emoji: text;
+  line-height: 1;
+}
+
 .menu-toggle {
   display: none;
   background: transparent;
