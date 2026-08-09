@@ -2,13 +2,6 @@
 
 /**
 
-
-
-
-
-
-
-
 Original
 :root {
 --ink: #151515;
@@ -31,13 +24,6 @@ Mediterranea
 --blue: #2d6cdf;
 --line: rgba(24, 40, 72, 0.18);
 }
-
-
-
-
-
-
-
 
 **/
 
@@ -996,13 +982,38 @@ html[data-theme="dark"] .quote-result li::before {
 .reviews h2 em {
   color: var(--lime);
 }
-.review-track {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+.reviews-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+.reviews-placeholder {
+  margin: 0 0 9px;
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  padding: 8px 12px;
+  font: 600 9px var(--font-geist-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.review-carousel {
   margin-top: 70px;
 }
-.review-track blockquote {
+.review-track {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 0 18px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.review-track::-webkit-scrollbar {
+  display: none;
+}
+.review-card {
+  flex: 0 0 calc((100% - 30px) / 3);
   margin: 0;
   border: 1px solid rgba(255, 255, 255, 0.45);
   min-height: 330px;
@@ -1010,42 +1021,116 @@ html[data-theme="dark"] .quote-result li::before {
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.04);
+  scroll-snap-align: start;
   transition:
     transform 0.25s,
     background 0.25s;
 }
-.review-track blockquote:nth-child(2) {
+.review-card:nth-child(4n + 2) {
   transform: rotate(2deg);
   background: var(--pink);
   color: var(--ink);
   border-color: var(--ink);
 }
-.review-track blockquote:hover {
+.review-card:nth-child(4n + 3) {
+  background: color-mix(in srgb, var(--lime) 18%, transparent);
+}
+.review-card:nth-child(4n) {
+  background: var(--orange);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.review-card:hover,
+.review-card.is-current {
   transform: translateY(-9px) rotate(-1deg);
   background: var(--white);
   color: var(--ink);
 }
-.review-track blockquote > span {
+.review-card > span {
   font: 600 10px var(--font-geist-mono);
 }
-.review-track blockquote > p {
+.review-card > p {
   font-size: 23px;
   line-height: 1.28;
   letter-spacing: -0.035em;
   margin: 38px 0;
 }
-.review-track footer {
+.review-card footer {
   margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.review-track footer b {
+.review-card footer b {
   font-size: 12px;
 }
-.review-track footer small {
+.review-card footer small {
   font-size: 10px;
   opacity: 0.65;
+}
+.review-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 25px;
+  margin-top: 22px;
+}
+.review-count {
+  margin: 0;
+  font: 650 11px var(--font-geist-mono);
+}
+.review-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.review-control {
+  width: 46px;
+  height: 46px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+.review-control:hover {
+  background: var(--lime);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+.review-control:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+.review-control svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+html[data-theme="dark"] .review-card:nth-child(4n + 2),
+html[data-theme="dark"] .review-card:nth-child(4n) {
+  background: color-mix(in srgb, var(--orange) 58%, var(--paper));
+  color: var(--ink);
+  border-color: currentColor;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .review-card:nth-child(4n + 2),
+  html:not([data-theme]) .review-card:nth-child(4n) {
+    background: color-mix(in srgb, var(--orange) 58%, var(--paper));
+    color: var(--ink);
+    border-color: currentColor;
+  }
 }
 .contact {
   padding-block: 135px;
@@ -1346,10 +1431,8 @@ html[data-theme="dark"] .nav-cta span {
   .quote-result {
     position: relative;
   }
-  .review-track {
-    grid-template-columns: 1fr;
-  }
-  .review-track blockquote {
+  .review-card {
+    flex-basis: calc((100% - 15px) / 2);
     min-height: 250px;
   }
   .contact {
@@ -1473,11 +1556,33 @@ html[data-theme="dark"] .nav-cta span {
   .reviews {
     padding-bottom: 85px;
   }
-  .review-track {
+  .reviews-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .reviews-placeholder {
+    margin: 0;
+  }
+  .review-carousel {
     margin-top: 45px;
   }
-  .review-track blockquote:nth-child(2) {
-    transform: none;
+  .review-card {
+    flex-basis: 100%;
+    min-height: 285px;
+    padding: 22px;
+  }
+  .review-card > p {
+    font-size: 21px;
+    margin: 30px 0;
+  }
+  .review-toolbar {
+    grid-template-columns: 1fr auto;
+    gap: 15px;
+  }
+  .review-control {
+    width: 42px;
+    height: 42px;
   }
   .contact {
     grid-template-columns: 1fr;

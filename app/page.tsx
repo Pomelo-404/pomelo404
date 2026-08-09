@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import Iso from "@/components/Iso";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const projects = [
   {
@@ -25,27 +26,6 @@ const projects = [
     copy: "Hospitalidad cálida, reservaciones simples.",
     tone: "lime",
     mark: "n/",
-  },
-];
-
-const reviews = [
-  {
-    quote:
-      "Entendieron la idea antes de que nosotros supiéramos explicarla. El sitio se siente totalmente nuestro.",
-    name: "Sofía R.",
-    role: "Co-fundadora, Miga",
-  },
-  {
-    quote:
-      "Pasamos de explicar demasiado a recibir leads que ya entendían el valor. El cambio fue inmediato.",
-    name: "Andrés M.",
-    role: "Director, Faro",
-  },
-  {
-    quote:
-      "Proceso claro, cero drama y un resultado que da gusto compartir. Volveríamos a trabajar con ellos.",
-    name: "Paula G.",
-    role: "Fundadora, Nido",
   },
 ];
 
@@ -284,28 +264,7 @@ export default function Home() {
 
       <QuoteCalculator />
 
-      <section id="reviews" className="reviews section-space">
-        <div className="section-shell">
-          <p className="section-index light">03 / Reviews</p>
-          <h2>
-            Clientes contentos.
-            <br />
-            <em>Sitios con pulso.</em>
-          </h2>
-        </div>
-        <div className="review-track section-shell">
-          {reviews.map((review, index) => (
-            <blockquote key={review.name}>
-              <span>0{index + 1}</span>
-              <p>“{review.quote}”</p>
-              <footer>
-                <b>{review.name}</b>
-                <small>{review.role}</small>
-              </footer>
-            </blockquote>
-          ))}
-        </div>
-      </section>
+      <ReviewsCarousel />
 
       <section id="contacto" className="contact section-shell">
         <div className="contact-art" aria-hidden="true">

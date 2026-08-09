@@ -10,7 +10,11 @@ flowchart TD
   SITE --> CSS["app/globals.css · identidad y responsive"]
   SITE --> LAYOUT["app/layout.tsx · metadata y fuentes"]
   SITE --> QUOTE["Cotizador modular"]
-  SITE --> DEPLOY["Vercel · pomelo404.vercel.app"]
+  SITE --> DEPLOY["Vercel"]
+  DEPLOY --> DOMAIN["Dominio principal · www.pomelo404.com"]
+  DOMAIN --> CANONICAL["Canonical · https://www.pomelo404.com"]
+  SITE --> BRAND["Activos de marca"]
+  SITE --> SEO["SEO y social sharing"]
 
   PAGE --> NAV["Nav + menú móvil"]
   PAGE --> HERO["Hero"]
@@ -30,6 +34,12 @@ flowchart TD
   DESKTOP --> LOOP["2 grupos de 100vw · translateX(-50%)"]
   MOBILE --> LOOP
 
+  REVIEWS --> REVIEWS_VIEW["components/ReviewsCarousel.tsx"]
+  REVIEWS_VIEW --> REVIEWS_DATA["data/reviews.ts · 8 placeholders"]
+  REVIEWS_VIEW --> REVIEWS_MOTION["Autoplay · pausa · flechas · swipe"]
+  REVIEWS_MOTION --> REVIEWS_RESPONSIVE["3 desktop · 2 tablet · 1 móvil"]
+  REVIEWS_MOTION --> REVIEWS_A11Y["Pause explícita + reduced-motion"]
+
   QUOTE --> QUOTE_VIEW
   QUOTE_VIEW --> HOOK["hooks/useQuote.ts · estado derivado"]
   HOOK --> PRICING["data/pricing.ts · tipos y precios"]
@@ -41,19 +51,30 @@ flowchart TD
   CSS --> DARK["Dark · Neón nocturno"]
   CSS --> ACCESS["Contraste + reduced-motion + overflow móvil"]
 
-  HANDOFF["Último handoff aprobado"] --> PAGE_OUT["outputs/page.tsx"]
-  HANDOFF --> CSS_OUT["outputs/globals-marquee-corregido.css"]
-  HANDOFF --> ZIP["outputs/pomelo404-page-globals-corregidos.zip"]
-  PAGE_OUT -. "reemplazar" .-> PAGE
-  CSS_OUT -. "renombrar a globals.css" .-> CSS
+  BRAND --> ISO["Isotipo elegido · Pixel"]
+  ISO --> SIGNATURE["Firma de correo HTML"]
+  SIGNATURE --> ISO_PNG["pomelo404-pixel-iso.png · 96×96"]
+  SIGNATURE --> EMAIL_DATA["hola@pomelo404.com · sitio · CDMX"]
+
+  SEO --> META["layout.tsx · Metadata + Viewport"]
+  META --> OG["Open Graph · 3 imágenes 1200×630"]
+  META --> TWITTER["Twitter Card · imagen principal"]
+  META --> SCHEMA["JSON-LD · ProfessionalService"]
+  META --> ROBOTS["Robots + canonical"]
+
+  SOURCE["Fuente de verdad · master 9443c7c + carrusel"] --> PAGE
+  SOURCE --> CSS
+  SOURCE --> REVIEWS_VIEW
+  SOURCE --> REVIEWS_DATA
 ```
 
 ## Fuente de verdad del último cambio
 
-- `outputs/page.tsx`: nav con control de tema, seguimiento de cambios del sistema y dos tracks del marquee.
-- `outputs/globals-marquee-corregido.css`: paletas, dark mode, contraste, marquee continuo y reglas móviles.
-- `outputs/pomelo404-page-globals-corregidos.zip`: contiene ambos archivos con sus nombres finales para `app/`.
-- Los archivos dentro de `app/` pueden permanecer desactualizados hasta que el usuario copie el último handoff.
+- Base cotejada: descarga de `master`, commit `9443c7cfd3a0c67ffd6e320e0f1e2811dadcff4c`.
+- `app/page.tsx`: conserva la composición actual e integra `ReviewsCarousel`.
+- `components/ReviewsCarousel.tsx`: interacción, autoplay, controles, swipe y accesibilidad.
+- `data/reviews.ts`: ocho testimonios provisionales separados de la vista.
+- `app/globals.css`: estilos del carrusel para 3, 2 y 1 tarjetas visibles según el ancho.
 
 ## Contratos que no deben romperse
 
@@ -67,11 +88,17 @@ flowchart TD
 8. El nombre del proyecto es opcional y solo se añade al mensaje si tiene contenido.
 9. El número de WhatsApp continúa como placeholder hasta que el usuario proporcione el real.
 10. No desplegar ni actualizar Vercel automáticamente; el usuario gestiona el deploy.
+11. La firma de correo usa el isotipo Pixel como PNG alojado en el dominio para maximizar compatibilidad.
+12. La imagen OG pública debe ser `og-pomelo404-v2.png`; Neón y Editorial permanecen como alternativas no declaradas.
+13. El dominio canónico es `https://www.pomelo404.com`; todas las URLs públicas deben usar `www`.
+14. Las reviews permanecen como placeholders hasta recibir testimonios autorizados; el carrusel no requiere librerías externas.
 
 ## Próximos pasos pendientes
 
-- Copiar el último `page.tsx` y `globals.css` a `app/` si aún no se ha hecho.
 - Reemplazar proyectos y reviews de ejemplo por contenido real autorizado.
-- Confirmar correo, redes, dominio y número de WhatsApp Business.
+- Publicar el metadata corregido con canonical `https://www.pomelo404.com` y una sola imagen `og-pomelo404-v2.png`.
+- Imágenes OG actualizadas para mostrar `www.pomelo404.com`.
+- Confirmar que `pomelo404.com` redirija de forma permanente a `www.pomelo404.com`.
+- Confirmar correo, redes y número de WhatsApp Business.
 - Añadir analítica para cotizador, WhatsApp y contacto.
 - Verificar visualmente el marquee en iPhone y en anchos de 320, 390, 620 y 1440 px.
