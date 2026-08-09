@@ -1,32 +1,27 @@
 @import "tailwindcss";
 
-/**
+/*
+ * pomelo404 · Estilos globales
+ * --------------------------------------------------------------------------
+ * 01. Temas y tokens
+ * 02. Base y estructura compartida
+ * 03. Navegación
+ * 04. Hero y animaciones decorativas
+ * 05. Marquee
+ * 06. Proyectos
+ * 07. Cotizador
+ * 08. Reviews / carrusel
+ * 09. Contacto y footer
+ * 10. Control de tema y contraste oscuro
+ * 11. Responsive y accesibilidad
+ * 12. Isotipos
+ * 13. Compatibilidad progresiva y legado
+ *
+ * La paleta Mediterránea de :root es la fuente de verdad del tema claro.
+ * Los fallbacks del final conservan contenido legible en motores antiguos.
+ */
 
-Original
-:root {
---ink: #151515;
---paper: #f6f2e8;
---white: #fffdf7;
---orange: #ff5c35;
---pink: #ff9aba;
---lime: #c9f43b;
---blue: #5c61ff;
---line: rgba(21, 21, 21, 0.18);
-}
-Mediterranea
-:root {
---ink: #182848;
---paper: #f7f0e8;
---white: #fffdf8;
---orange: #ff7a3d;
---pink: #ff8e8e;
---lime: #ffd166;
---blue: #2d6cdf;
---line: rgba(24, 40, 72, 0.18);
-}
-
-**/
-
+/* 01 · Tema claro: paleta Mediterránea (no cambiar sin aprobación). */
 :root {
   color-scheme: light;
 
@@ -38,9 +33,34 @@ Mediterranea
   --lime: #ffd166;
   --blue: #2d6cdf;
   --line: rgba(24, 40, 72, 0.18);
+
+  /* Tonos derivados fijos: evitan diferencias de color-mix() entre motores. */
+  --ink-18: rgba(24, 40, 72, 0.18);
+  --ink-48: rgba(24, 40, 72, 0.48);
+  --ink-62: rgba(24, 40, 72, 0.62);
+  --ink-65: rgba(24, 40, 72, 0.65);
+  --paper-24: rgba(247, 240, 232, 0.24);
+  --paper-52: rgba(247, 240, 232, 0.52);
+  --paper-62: rgba(247, 240, 232, 0.62);
+  --lime-18: rgba(255, 209, 102, 0.18);
+  --lime-26-paper: #f9e8c6;
+  --lime-35-paper: #fae5bb;
+  --lime-62-paper: #fcdd97;
+  --lime-70-paper: #fdda8d;
+  --blue-38-paper: #aabee5;
+  --orange-40-paper: #fac1a4;
+  --orange-58-paper: #fcac85;
+  --orange-70-paper: #fd9d70;
+  --pink-34-paper: #facfc9;
+  --pink-62-paper: #fcb3b0;
 }
 
-/* 2. Tema oscuro seleccionado manualmente */
+/* Declaración explícita para que Samsung Internet no reinterprete el tema manual. */
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Tema oscuro seleccionado manualmente. */
 html[data-theme="dark"] {
   color-scheme: dark;
 
@@ -54,9 +74,27 @@ html[data-theme="dark"] {
   --blue: #5362ff;
 
   --line: rgba(247, 247, 242, 0.2);
+  --ink-18: rgba(247, 247, 242, 0.18);
+  --ink-48: rgba(247, 247, 242, 0.48);
+  --ink-62: rgba(247, 247, 242, 0.62);
+  --ink-65: rgba(247, 247, 242, 0.65);
+  --paper-24: rgba(11, 11, 18, 0.24);
+  --paper-52: rgba(11, 11, 18, 0.52);
+  --paper-62: rgba(11, 11, 18, 0.62);
+  --lime-18: rgba(199, 255, 61, 0.18);
+  --lime-26-paper: #3c4a1d;
+  --lime-35-paper: #4d6021;
+  --lime-62-paper: #80a22d;
+  --lime-70-paper: #8fb630;
+  --blue-38-paper: #262c6c;
+  --orange-40-paper: #6d2c1d;
+  --orange-58-paper: #993b22;
+  --orange-70-paper: #b64426;
+  --pink-34-paper: #5e2240;
+  --pink-62-paper: #a23566;
 }
 
-/* 3. Tema oscuro automático cuando no existe selección manual */
+/* Tema oscuro automático cuando no existe selección manual. */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) {
     color-scheme: dark;
@@ -71,20 +109,43 @@ html[data-theme="dark"] {
     --blue: #5362ff;
 
     --line: rgba(247, 247, 242, 0.2);
+    --ink-18: rgba(247, 247, 242, 0.18);
+    --ink-48: rgba(247, 247, 242, 0.48);
+    --ink-62: rgba(247, 247, 242, 0.62);
+    --ink-65: rgba(247, 247, 242, 0.65);
+    --paper-24: rgba(11, 11, 18, 0.24);
+    --paper-52: rgba(11, 11, 18, 0.52);
+    --paper-62: rgba(11, 11, 18, 0.62);
+    --lime-18: rgba(199, 255, 61, 0.18);
+    --lime-26-paper: #3c4a1d;
+    --lime-35-paper: #4d6021;
+    --lime-62-paper: #80a22d;
+    --lime-70-paper: #8fb630;
+    --blue-38-paper: #262c6c;
+    --orange-40-paper: #6d2c1d;
+    --orange-58-paper: #993b22;
+    --orange-70-paper: #b64426;
+    --pink-34-paper: #5e2240;
+    --pink-62-paper: #a23566;
   }
 }
 
+/* 02 · Reset mínimo, tipografía y contenedores compartidos. */
 * {
   box-sizing: border-box;
 }
 html {
   scroll-behavior: smooth;
+  background: var(--paper);
 }
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 a {
@@ -94,14 +155,18 @@ a {
 button,
 input {
   font: inherit;
+  color: inherit;
 }
 .section-shell {
+  width: calc(100% - 64px);
+  max-width: 1440px;
   width: min(1440px, calc(100% - 64px));
   margin-inline: auto;
 }
 .section-space {
   padding-block: 138px;
 }
+/* 03 · Marca y navegación principal. */
 .logo {
   display: inline-flex;
   align-items: center;
@@ -124,6 +189,8 @@ input {
   left: 0;
   right: 0;
   height: 88px;
+  width: calc(100% - 64px);
+  max-width: 1440px;
   width: min(1440px, calc(100% - 64px));
   margin: auto;
   display: flex;
@@ -188,6 +255,7 @@ input {
   border-radius: 50%;
   font-size: 19px;
 }
+/* 04 · Hero, ilustración vectorial y microanimaciones. */
 .hero {
   min-height: 820px;
   padding-top: 176px;
@@ -234,6 +302,7 @@ input {
 .quote-heading h2,
 .reviews h2,
 .contact h2 {
+  font-size: 96px;
   font-size: clamp(70px, 8.1vw, 126px);
   line-height: 0.82;
   letter-spacing: -0.085em;
@@ -311,6 +380,8 @@ input {
 .hero-vector {
   align-self: center;
   justify-self: end;
+  width: 43vw;
+  max-width: 590px;
   width: min(43vw, 590px);
   aspect-ratio: 1;
   position: relative;
@@ -460,8 +531,9 @@ input {
   letter-spacing: 0.4px;
 }
 .hero-proof span {
-  color: color-mix(in srgb, var(--ink) 65%, transparent);
+  color: var(--ink-65);
 }
+/* 05 · Marquee continuo con dos grupos idénticos. */
 .marquee {
   width: 100%;
   background: var(--ink);
@@ -493,6 +565,7 @@ input {
   width: 100vw;
   min-width: 100vw;
   flex: 0 0 100vw;
+  gap: 20px;
   gap: clamp(12px, 2vw, 30px);
   padding: 16px 30px 16px 0;
   white-space: nowrap;
@@ -530,6 +603,7 @@ input {
   }
 }
 
+/* 06 · Presentación y tarjetas de proyectos. */
 .section-intro {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -543,6 +617,7 @@ input {
 .quote-heading h2,
 .reviews h2,
 .contact h2 {
+  font-size: 82px;
   font-size: clamp(61px, 7vw, 108px);
 }
 .section-intro > p,
@@ -606,6 +681,7 @@ input {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -48%);
+  font-size: 180px;
   font-size: clamp(100px, 19vw, 280px);
   letter-spacing: -0.1em;
   line-height: 1;
@@ -658,6 +734,7 @@ input {
   letter-spacing: -0.055em;
   margin: 5px 0 0;
 }
+/* 07 · Cotizador: formulario, opciones y resumen. */
 .quote-section {
   border-top: 1px solid var(--line);
 }
@@ -682,6 +759,7 @@ input {
   padding: 20px 48px;
 }
 .quote-form fieldset {
+  min-width: 0;
   border: 0;
   border-bottom: 1px solid var(--line);
   padding: 36px 0 42px;
@@ -744,7 +822,7 @@ input {
 .option-card small {
   font-size: 10px;
   margin-top: 7px;
-  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  color: var(--ink-62);
 }
 .option-card i {
   position: absolute;
@@ -771,23 +849,47 @@ input {
 }
 .range {
   --range: 25%;
+  -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 4px;
   background: linear-gradient(
     to right,
     var(--orange) var(--range),
-    color-mix(in srgb, var(--ink) 18%, transparent) var(--range)
+    var(--ink-18) var(--range)
   );
   margin-top: 24px;
 }
 .range::-webkit-slider-thumb {
+  -webkit-appearance: none;
   appearance: none;
+  box-sizing: border-box;
   width: 22px;
   height: 22px;
   border-radius: 50%;
   background: var(--orange);
   border: 3px solid var(--white);
+  box-shadow: 0 0 0 1px var(--ink);
+  cursor: grab;
+}
+
+/* Firefox separa la pista, el progreso y el pulgar del input range. */
+.range::-moz-range-track {
+  height: 4px;
+  border: 0;
+  background: var(--ink-18);
+}
+.range::-moz-range-progress {
+  height: 4px;
+  background: var(--orange);
+}
+.range::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  background: var(--orange);
   box-shadow: 0 0 0 1px var(--ink);
   cursor: grab;
 }
@@ -862,7 +964,7 @@ input {
 .project-name-field small {
   font: 500 9px var(--font-geist-mono);
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  color: var(--ink-62);
   letter-spacing: 0.5px;
 }
 .project-name-field input {
@@ -879,7 +981,7 @@ input {
     box-shadow 0.2s;
 }
 .project-name-field input::placeholder {
-  color: color-mix(in srgb, var(--ink) 48%, transparent);
+  color: var(--ink-48);
 }
 .project-name-field input:focus {
   border-color: var(--ink);
@@ -904,18 +1006,19 @@ input {
   margin: 0 0 18px;
 }
 .quote-result > strong {
+  font-size: 48px;
   font-size: clamp(38px, 4vw, 60px);
   letter-spacing: -0.07em;
   line-height: 1;
 }
 .quote-result > span {
   font-size: 10px;
-  color: color-mix(in srgb, var(--paper) 62%, transparent);
+  color: var(--paper-62);
   margin-top: 6px;
 }
 .estimate-range {
-  border-top: 1px solid color-mix(in srgb, var(--paper) 24%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--paper) 24%, transparent);
+  border-top: 1px solid var(--paper-24);
+  border-bottom: 1px solid var(--paper-24);
   padding: 20px 0;
   margin: 29px 0 16px;
 }
@@ -925,7 +1028,7 @@ input {
   font-size: 10px;
 }
 .estimate-range span {
-  color: color-mix(in srgb, var(--paper) 62%, transparent);
+  color: var(--paper-62);
   margin-bottom: 7px;
 }
 .estimate-range b {
@@ -946,13 +1049,13 @@ input {
 }
 /* Checkmark en modo oscuro manual */
 html[data-theme="dark"] .quote-result li::before {
-  color: color-mix(in srgb, var(--lime) 35%, var(--paper));
+  color: var(--lime-35-paper);
 }
 
 /* Checkmark en modo oscuro automático */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .quote-result li::before {
-    color: color-mix(in srgb, var(--lime) 35%, var(--paper));
+    color: var(--lime-35-paper);
   }
 }
 
@@ -966,11 +1069,12 @@ html[data-theme="dark"] .quote-result li::before {
   color: var(--paper);
 }
 .quote-result > small {
-  color: color-mix(in srgb, var(--paper) 52%, transparent);
+  color: var(--paper-52);
   font-size: 8px;
   line-height: 1.4;
   margin-top: 17px;
 }
+/* 08 · Carrusel de reviews: scroll nativo, controles y estados. */
 .reviews {
   background: var(--blue);
   color: white;
@@ -1014,6 +1118,7 @@ html[data-theme="dark"] .quote-result li::before {
 }
 .review-card {
   flex: 0 0 calc((100% - 30px) / 3);
+  min-width: 0;
   margin: 0;
   border: 1px solid rgba(255, 255, 255, 0.45);
   min-height: 330px;
@@ -1033,7 +1138,7 @@ html[data-theme="dark"] .quote-result li::before {
   border-color: var(--ink);
 }
 .review-card:nth-child(4n + 3) {
-  background: color-mix(in srgb, var(--lime) 18%, transparent);
+  background: var(--lime-18);
 }
 .review-card:nth-child(4n) {
   background: var(--orange);
@@ -1120,18 +1225,19 @@ html[data-theme="dark"] .quote-result li::before {
 }
 html[data-theme="dark"] .review-card:nth-child(4n + 2),
 html[data-theme="dark"] .review-card:nth-child(4n) {
-  background: color-mix(in srgb, var(--orange) 58%, var(--paper));
+  background: var(--orange-58-paper);
   color: var(--ink);
   border-color: currentColor;
 }
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .review-card:nth-child(4n + 2),
   html:not([data-theme]) .review-card:nth-child(4n) {
-    background: color-mix(in srgb, var(--orange) 58%, var(--paper));
+    background: var(--orange-58-paper);
     color: var(--ink);
     border-color: currentColor;
   }
 }
+/* 09 · Contacto y pie de página. */
 .contact {
   padding-block: 135px;
   display: grid;
@@ -1206,6 +1312,7 @@ html[data-theme="dark"] .review-card:nth-child(4n) {
   gap: 25px;
 }
 
+/* 10 · Control de tema y ajustes de contraste del modo oscuro. */
 .theme-controls {
   display: flex;
   align-items: center;
@@ -1301,77 +1408,80 @@ html[data-theme="dark"] .theme-icon-moon {
 
 /* Contraste de acentos para el tema oscuro manual */
 html[data-theme="dark"] .check-option.selected {
-  background: color-mix(in srgb, var(--lime) 26%, var(--paper));
-  border-color: color-mix(in srgb, var(--lime) 62%, var(--paper));
+  background: var(--lime-26-paper);
+  border-color: var(--lime-62-paper);
   color: var(--ink);
 }
 
 html[data-theme="dark"] .segmented button.active {
-  background: color-mix(in srgb, var(--blue) 38%, var(--paper));
+  background: var(--blue-38-paper);
   color: var(--ink);
 }
 
 html[data-theme="dark"] .button-light {
-  background: color-mix(in srgb, var(--lime) 70%, var(--paper));
+  background: var(--lime-70-paper);
   color: var(--ink);
 }
 
 html[data-theme="dark"] .button-light span {
-  background: color-mix(in srgb, var(--orange) 70%, var(--paper));
+  background: var(--orange-70-paper);
   color: var(--ink);
 }
 
 html[data-theme="dark"] .contact-art > span {
-  background: color-mix(in srgb, var(--pink) 34%, var(--paper));
-  border-color: color-mix(in srgb, var(--pink) 62%, var(--paper));
+  background: var(--pink-34-paper);
+  border-color: var(--pink-62-paper);
   color: var(--ink);
 }
 
 html[data-theme="dark"] .button-dark span,
 html[data-theme="dark"] .nav-cta span {
-  background: color-mix(in srgb, var(--orange) 70%, var(--paper));
+  background: var(--orange-70-paper);
   color: var(--ink);
 }
 
 /* Las mismas correcciones cuando el modo oscuro viene del sistema */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .check-option.selected {
-    background: color-mix(in srgb, var(--lime) 26%, var(--paper));
-    border-color: color-mix(in srgb, var(--lime) 62%, var(--paper));
+    background: var(--lime-26-paper);
+    border-color: var(--lime-62-paper);
     color: var(--ink);
   }
 
   html:not([data-theme]) .segmented button.active {
-    background: color-mix(in srgb, var(--blue) 38%, var(--paper));
+    background: var(--blue-38-paper);
     color: var(--ink);
   }
 
   html:not([data-theme]) .button-light {
-    background: color-mix(in srgb, var(--lime) 70%, var(--paper));
+    background: var(--lime-70-paper);
     color: var(--ink);
   }
 
   html:not([data-theme]) .button-light span {
-    background: color-mix(in srgb, var(--orange) 70%, var(--paper));
+    background: var(--orange-70-paper);
     color: var(--ink);
   }
 
   html:not([data-theme]) .contact-art > span {
-    background: color-mix(in srgb, var(--pink) 34%, var(--paper));
-    border-color: color-mix(in srgb, var(--pink) 62%, var(--paper));
+    background: var(--pink-34-paper);
+    border-color: var(--pink-62-paper);
     color: var(--ink);
   }
 
   html:not([data-theme]) .button-dark span,
   html:not([data-theme]) .nav-cta span {
-    background: color-mix(in srgb, var(--orange) 40%, var(--paper));
+    background: var(--orange-40-paper);
     color: var(--ink);
   }
 }
 
+/* 11 · Adaptación tablet, móvil y preferencias de accesibilidad. */
 @media (max-width: 900px) {
   .section-shell,
   .site-nav {
+    width: calc(100% - 36px);
+    max-width: 1440px;
     width: min(100% - 36px, 1440px);
   }
   .quote-result li:before {
@@ -1392,6 +1502,7 @@ html[data-theme="dark"] .nav-cta span {
     z-index: 2;
   }
   .hero h1 {
+    font-size: 82px;
     font-size: clamp(64px, 15vw, 105px);
   }
   .hero-lede,
@@ -1399,6 +1510,8 @@ html[data-theme="dark"] .nav-cta span {
     margin-left: 0;
   }
   .hero-vector {
+    width: 90vw;
+    max-width: 560px;
     width: min(90vw, 560px);
     margin: 35px auto 55px;
     justify-self: center;
@@ -1486,6 +1599,7 @@ html[data-theme="dark"] .nav-cta span {
     padding-top: 125px;
   }
   .hero h1 {
+    font-size: 72px;
     font-size: clamp(60px, 19vw, 82px);
   }
   .hero-lede {
@@ -1691,13 +1805,13 @@ main {
 
 /* Mantiene el acento atenuado del CTA después de las reglas móviles. */
 html[data-theme="dark"] .nav-cta span {
-  background: color-mix(in srgb, var(--orange) 40%, var(--paper));
+  background: var(--orange-40-paper);
   color: var(--ink);
 }
 
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .nav-cta span {
-    background: color-mix(in srgb, var(--orange) 40%, var(--paper));
+    background: var(--orange-40-paper);
     color: var(--ink);
   }
 }
@@ -1722,6 +1836,7 @@ html[data-theme="dark"] .nav-cta span {
   }
 }
 
+/* 12 · Sistema de isotipos vectoriales construido únicamente con CSS. */
 .iso {
   --iso-size: 48px;
   position: relative;
@@ -1912,4 +2027,176 @@ html[data-theme="dark"] .nav-cta span {
   border-radius: 100% 0 100% 0;
   background: var(--lime);
   transform: rotate(12deg);
+}
+
+/*
+ * 13 · Compatibilidad progresiva
+ * --------------------------------------------------------------------------
+ * Estos bloques no intentan replicar cada animación. Su objetivo es conservar
+ * jerarquía, lectura y navegación cuando falta una capacidad moderna de CSS.
+ */
+
+/* Safari anterior a 15 y motores sin aspect-ratio reciben una caja cuadrada. */
+@supports not (aspect-ratio: 1 / 1) {
+  .hero-vector {
+    height: 43vw;
+    max-height: 590px;
+  }
+
+  .contact-art {
+    min-height: 420px;
+  }
+
+  @media (max-width: 900px) {
+    .hero-vector {
+      height: 90vw;
+      max-height: 560px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .contact-art {
+      min-height: calc(100vw - 80px);
+    }
+  }
+}
+
+/* Sin CSS Grid, el documento pasa a una columna sin perder contenido. */
+@supports not (display: grid) {
+  .hero,
+  .section-intro,
+  .project-grid,
+  .quote-heading,
+  .quote-card,
+  .contact,
+  .site-footer {
+    display: block;
+  }
+
+  .hero-vector,
+  .project-card,
+  .quote-result,
+  .contact-art,
+  .site-footer > * {
+    margin-top: 32px;
+  }
+
+  .quote-result {
+    position: relative;
+  }
+}
+
+/*
+ * Internet Explorer 10/11 y motores equivalentes: fallback visual estático.
+ * Next.js 16 no hidrata en IE, por lo que menú, tema y cotizador no serán
+ * interactivos; el contenido principal continúa visible y ordenado.
+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  html,
+  body {
+    background: #f7f0e8;
+    color: #182848;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .section-shell,
+  .site-nav {
+    width: calc(100% - 64px);
+    max-width: 1440px;
+  }
+
+  .site-nav {
+    position: relative;
+  }
+
+  .logo span,
+  .hero h1 em,
+  .section-intro h2 em,
+  .quote-heading h2 em,
+  .contact h2 em {
+    color: #ff7a3d;
+  }
+
+  .theme-controls,
+  .menu-toggle,
+  .review-toolbar,
+  .hero-vector,
+  .marquee,
+  .contact-art {
+    display: none;
+  }
+
+  .hero,
+  .section-intro,
+  .project-grid,
+  .quote-heading,
+  .quote-card,
+  .contact,
+  .site-footer {
+    display: block;
+  }
+
+  .hero {
+    min-height: 0;
+    padding-top: 80px;
+  }
+
+  .project-card {
+    margin-bottom: 48px;
+  }
+
+  .project-card.coral .project-visual {
+    background: #ff7a3d;
+  }
+
+  .project-card.blue .project-visual,
+  .reviews {
+    background: #2d6cdf;
+  }
+
+  .project-card.lime .project-visual,
+  .button-light {
+    background: #ffd166;
+  }
+
+  .quote-card,
+  .option-card,
+  .project-name-field input {
+    border-color: #182848;
+    background: #fffdf8;
+    color: #182848;
+  }
+
+  .quote-result {
+    position: relative;
+    margin-top: 0;
+    background: #182848;
+    color: #f7f0e8;
+  }
+
+  .review-track {
+    display: block;
+    overflow: visible;
+  }
+
+  .review-card,
+  .review-card:nth-child(n) {
+    display: block;
+    min-height: 0;
+    margin: 0 0 16px;
+    border-color: #182848;
+    background: #fffdf8;
+    color: #182848;
+    transform: none;
+  }
+
+  .reviews h2,
+  .section-index.light {
+    color: #ffffff;
+  }
+
+  .contact,
+  .site-footer {
+    margin-top: 72px;
+  }
 }
