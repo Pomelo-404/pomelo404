@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuoteCalculator from "@/components/QuoteCalculator";
 
 const projects = [
@@ -48,8 +48,103 @@ const reviews = [
   },
 ];
 
+const desktopMarqueeItems = [
+  "Diseño con intención",
+  "Desarrollo Next.js",
+  "Movimiento con sabor",
+  "Ideas que convierten",
+];
+
+const mobileMarqueeItems = ["Diseño web", "Next.js", "Con intención"];
+
+function MarqueeTrack({
+  items,
+  variant,
+}: {
+  items: string[];
+  variant: "desktop" | "mobile";
+}) {
+  return (
+    <div className={`marquee-track marquee-track--${variant}`}>
+      {[0, 1].map((copy) => (
+        <div className="marquee-group" key={copy}>
+          {items.flatMap((item) => [
+            <span key={`${copy}-${item}`}>{item}</span>,
+            <b key={`${copy}-${item}-separator`}>✦</b>,
+          ])}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ThemeToggle() {
+  function toggleTheme() {
+    const root = document.documentElement;
+
+    if (root.hasAttribute("data-theme")) {
+      root.removeAttribute("data-theme");
+      localStorage.removeItem("theme");
+      return;
+    }
+
+    const systemDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const nextTheme = systemDark ? "light" : "dark";
+
+    root.setAttribute("data-theme", nextTheme);
+    localStorage.setItem("theme", nextTheme);
+  }
+
+  return (
+    <button
+      className="theme-toggle"
+      type="button"
+      aria-label="Cambiar tema. Presiona nuevamente para volver al automático"
+      title="Cambiar tema · segundo clic: automático"
+      onClick={toggleTheme}
+    >
+      <svg
+        className="theme-icon theme-icon-sun"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" />
+      </svg>
+
+      <svg
+        className="theme-icon theme-icon-moon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+      </svg>
+    </button>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "light" || savedTheme === "dark") {
+      root.setAttribute("data-theme", savedTheme);
+    }
+    function followSystemTheme() {
+      root.removeAttribute("data-theme");
+      localStorage.removeItem("theme");
+    }
+    systemTheme.addEventListener("change", followSystemTheme);
+    return () => {
+      systemTheme.removeEventListener("change", followSystemTheme);
+    };
+  }, []);
 
   return (
     <main>
@@ -83,11 +178,11 @@ export default function Home() {
             className="nav-cta"
             onClick={() => setMenuOpen(false)}
           >
-            Cotiza ahora{" "}
-            <span className="arrow" aria-hidden="true">
-              &#8599;&#65038;
-            </span>
+            Cotiza ahora <span>↗</span>
           </a>
+          <div className="theme-controls">
+            <ThemeToggle />
+          </div>
         </nav>
       </header>
 
@@ -105,16 +200,10 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#cotizador">
-              Cotiza en 2 min{" "}
-              <span className="arrow" aria-hidden="true">
-                &#8600;&#65038;
-              </span>
+              Cotiza en 2 min <span>↘</span>
             </a>
             <a className="text-link" href="#proyectos">
-              Ver proyectos{" "}
-              <span className="arrow" aria-hidden="true">
-                &#8595;&#65038;
-              </span>
+              Ver proyectos <span>↓</span>
             </a>
           </div>
         </div>
@@ -144,18 +233,8 @@ export default function Home() {
       </section>
 
       <div className="marquee" aria-hidden="true">
-        <div>
-          <span>Diseño con intención</span>
-          <b>✦</b>
-          <span>Desarrollo Next.js</span>
-          <b>✦</b>
-          <span>Movimiento con sabor</span>
-          <b>✦</b>
-          <span>Diseño con intención</span>
-          <b>✦</b>
-          <span>Desarrollo Next.js</span>
-          <b>✦</b>
-        </div>
+        <MarqueeTrack items={desktopMarqueeItems} variant="desktop" />
+        <MarqueeTrack items={mobileMarqueeItems} variant="mobile" />
       </div>
 
       <section id="proyectos" className="projects section-shell section-space">
@@ -187,12 +266,7 @@ export default function Home() {
                   <span>pomelo404 / 0{index + 1}</span>
                 </div>
                 <strong>{project.mark}</strong>
-                <div className="project-pill">
-                  View project{" "}
-                  <span className="arrow" aria-hidden="true">
-                    &#8599;&#65038;
-                  </span>
-                </div>
+                <div className="project-pill">View project ↗</div>
               </div>
               <div className="project-meta">
                 <div>
@@ -248,10 +322,7 @@ export default function Home() {
             1–2 días hábiles.
           </p>
           <a href="mailto:hola@pomelo404.com" className="contact-email">
-            hola@pomelo404.com{" "}
-            <span className="arrow" aria-hidden="true">
-              &#8599;&#65038;
-            </span>
+            hola@pomelo404.com <span>↗</span>
           </a>
         </div>
       </section>

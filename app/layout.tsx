@@ -12,13 +12,34 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const themeScript = `
+  (function () {
+    try {
+      var savedTheme =
+        localStorage.getItem("pomelo-theme");
+
+      if (
+        savedTheme === "light" ||
+        savedTheme === "dark"
+      ) {
+        document.documentElement.dataset.theme =
+          savedTheme;
+      }
+    } catch (error) {}
+  })();
+`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://pomelo404.vercel.app"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://pomelo404.vercel.app",
+  ),
   title: "pomelo404 — Sitios que hacen click",
-  description: "Estudio web independiente. Estrategia, diseño y desarrollo Next.js para marcas con buenas ideas.",
+  description:
+    "Estudio web independiente. Estrategia, diseño y desarrollo Next.js para marcas con buenas ideas.",
   openGraph: {
     title: "pomelo404 — Sitios que hacen click",
-    description: "Estrategia, diseño y desarrollo Next.js para marcas con buenas ideas.",
+    description:
+      "Estrategia, diseño y desarrollo Next.js para marcas con buenas ideas.",
     images: [{ url: "/og-v2.png", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image" },
@@ -34,7 +55,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeScript,
+          }}
+        />
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

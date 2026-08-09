@@ -1,15 +1,93 @@
 @import "tailwindcss";
 
+/**
+
+
+
+
+
+
+
+
+Original
 :root {
-  --ink: #151515;
-  --paper: #f6f2e8;
-  --white: #fffdf7;
-  --orange: #ff5c35;
-  --pink: #ff9aba;
-  --lime: #c9f43b;
-  --blue: #5c61ff;
-  --line: rgba(21, 21, 21, 0.18);
+--ink: #151515;
+--paper: #f6f2e8;
+--white: #fffdf7;
+--orange: #ff5c35;
+--pink: #ff9aba;
+--lime: #c9f43b;
+--blue: #5c61ff;
+--line: rgba(21, 21, 21, 0.18);
 }
+Mediterranea
+:root {
+--ink: #182848;
+--paper: #f7f0e8;
+--white: #fffdf8;
+--orange: #ff7a3d;
+--pink: #ff8e8e;
+--lime: #ffd166;
+--blue: #2d6cdf;
+--line: rgba(24, 40, 72, 0.18);
+}
+
+
+
+
+
+
+
+
+**/
+
+:root {
+  color-scheme: light;
+
+  --ink: #182848;
+  --paper: #f7f0e8;
+  --white: #fffdf8;
+  --orange: #ff7a3d;
+  --pink: #ff8e8e;
+  --lime: #ffd166;
+  --blue: #2d6cdf;
+  --line: rgba(24, 40, 72, 0.18);
+}
+
+/* 2. Tema oscuro seleccionado manualmente */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ink: #f7f7f2;
+  --paper: #0b0b12;
+  --white: #1b1c2b;
+
+  --orange: #ff5d2e;
+  --pink: #ff4f9a;
+  --lime: #c7ff3d;
+  --blue: #5362ff;
+
+  --line: rgba(247, 247, 242, 0.2);
+}
+
+/* 3. Tema oscuro automático cuando no existe selección manual */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    color-scheme: dark;
+
+    --ink: #f7f7f2;
+    --paper: #0b0b12;
+    --white: #1b1c2b;
+
+    --orange: #ff5d2e;
+    --pink: #ff4f9a;
+    --lime: #c7ff3d;
+    --blue: #5362ff;
+
+    --line: rgba(247, 247, 242, 0.2);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -75,10 +153,12 @@ input {
   gap: 32px;
   font-size: 13px;
   font-weight: 650;
+  color: var(--ink);
 }
 .nav-links > a:not(.nav-cta):hover {
   color: var(--orange);
 }
+
 .nav-cta {
   border: 1.5px solid var(--ink);
   border-radius: 100px;
@@ -92,7 +172,7 @@ input {
   height: 29px;
   border-radius: 50%;
   background: var(--ink);
-  color: white;
+  color: var(--paper);
   display: grid;
   place-items: center;
   transition: transform 0.25s;
@@ -121,7 +201,7 @@ input {
   width: 30px;
   height: 30px;
   background: var(--ink);
-  color: white;
+  color: var(--paper);
   border-radius: 50%;
   font-size: 19px;
 }
@@ -230,7 +310,7 @@ input {
 }
 .button-dark {
   background: var(--ink);
-  color: white;
+  color: var(--paper);
 }
 .button-dark span {
   background: var(--lime);
@@ -263,7 +343,7 @@ input {
   background: repeating-conic-gradient(
     from 4deg,
     var(--orange) 0 28deg,
-    #ff7655 28deg 32deg
+    #d7674c 28deg 32deg
   );
   box-shadow: inset 0 0 0 10px var(--paper);
   animation: fruit-float 5s ease-in-out infinite;
@@ -397,29 +477,47 @@ input {
   letter-spacing: 0.4px;
 }
 .hero-proof span {
-  color: #5e5b54;
+  color: color-mix(in srgb, var(--ink) 65%, transparent);
 }
 .marquee {
+  width: 100%;
   background: var(--ink);
-  color: white;
+  color: var(--paper);
   overflow: hidden;
   position: relative;
   z-index: 3;
   transform: rotate(-1.5deg) scale(1.02);
 }
 
-.marquee div {
+.marquee > .marquee-track {
   display: flex;
-  align-items: center;
-  gap: 30px;
+  flex-flow: row nowrap;
   width: max-content;
-  padding: 16px 0;
-  white-space: nowrap;
-  animation: marquee-loop 45s linear infinite;
+  gap: 0;
+  padding: 0;
+  animation: marquee-seamless 75s linear infinite;
   will-change: transform;
 }
 
-.marquee span {
+.marquee > .marquee-track--mobile {
+  display: none;
+}
+
+.marquee-track > .marquee-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  min-width: 100vw;
+  flex: 0 0 100vw;
+  gap: clamp(12px, 2vw, 30px);
+  padding: 16px 30px 16px 0;
+  white-space: nowrap;
+  animation: none;
+  transform: none;
+}
+
+.marquee-group span {
   font:
     700 15px var(--font-geist-mono),
     monospace;
@@ -427,24 +525,24 @@ input {
   letter-spacing: 0.7px;
 }
 
-.marquee b {
+.marquee-group b {
   color: var(--lime);
   font-size: 20px;
   flex-shrink: 0;
 }
 
-@keyframes marquee-loop {
+@keyframes marquee-seamless {
   from {
-    transform: translate3d(100vw, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee div {
+  .marquee > .marquee-track {
     animation-play-state: paused;
   }
 }
@@ -622,7 +720,7 @@ input {
   width: 26px;
   height: 26px;
   background: var(--ink);
-  color: white;
+  color: var(--paper);
   border-radius: 50%;
   margin-right: 10px;
   vertical-align: 2px;
@@ -663,7 +761,7 @@ input {
 .option-card small {
   font-size: 10px;
   margin-top: 7px;
-  color: #706c64;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
 }
 .option-card i {
   position: absolute;
@@ -696,7 +794,7 @@ input {
   background: linear-gradient(
     to right,
     var(--orange) var(--range),
-    #d7d3ca var(--range)
+    color-mix(in srgb, var(--ink) 18%, transparent) var(--range)
   );
   margin-top: 24px;
 }
@@ -763,7 +861,7 @@ input {
 }
 .segmented button.active {
   background: var(--ink);
-  color: white;
+  color: var(--paper);
 }
 
 .project-name-field {
@@ -781,7 +879,7 @@ input {
 .project-name-field small {
   font: 500 9px var(--font-geist-mono);
   text-transform: uppercase;
-  color: #706c64;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
   letter-spacing: 0.5px;
 }
 .project-name-field input {
@@ -798,7 +896,7 @@ input {
     box-shadow 0.2s;
 }
 .project-name-field input::placeholder {
-  color: #9b978f;
+  color: color-mix(in srgb, var(--ink) 48%, transparent);
 }
 .project-name-field input:focus {
   border-color: var(--ink);
@@ -807,7 +905,7 @@ input {
 
 .quote-result {
   background: var(--ink);
-  color: white;
+  color: var(--paper);
   padding: 54px 38px;
   display: flex;
   flex-direction: column;
@@ -829,12 +927,12 @@ input {
 }
 .quote-result > span {
   font-size: 10px;
-  color: #a7a7a7;
+  color: color-mix(in srgb, var(--paper) 62%, transparent);
   margin-top: 6px;
 }
 .estimate-range {
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #3c3c3c;
+  border-top: 1px solid color-mix(in srgb, var(--paper) 24%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--paper) 24%, transparent);
   padding: 20px 0;
   margin: 29px 0 16px;
 }
@@ -844,7 +942,7 @@ input {
   font-size: 10px;
 }
 .estimate-range span {
-  color: #a7a7a7;
+  color: color-mix(in srgb, var(--paper) 62%, transparent);
   margin-bottom: 7px;
 }
 .estimate-range b {
@@ -861,7 +959,20 @@ input {
   content: "✓";
   color: var(--lime);
   margin-right: 10px;
+  font-size: 1.3rem;
 }
+/* Checkmark en modo oscuro manual */
+html[data-theme="dark"] .quote-result li::before {
+  color: color-mix(in srgb, var(--lime) 35%, var(--paper));
+}
+
+/* Checkmark en modo oscuro automático */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .quote-result li::before {
+    color: color-mix(in srgb, var(--lime) 35%, var(--paper));
+  }
+}
+
 .button-light {
   background: var(--lime);
   color: var(--ink);
@@ -869,10 +980,10 @@ input {
 }
 .button-light span {
   background: var(--ink);
-  color: white;
+  color: var(--paper);
 }
 .quote-result > small {
-  color: #858585;
+  color: color-mix(in srgb, var(--paper) 52%, transparent);
   font-size: 8px;
   line-height: 1.4;
   margin-top: 17px;
@@ -1012,10 +1123,180 @@ input {
   justify-content: flex-end;
   gap: 25px;
 }
+
+.theme-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+/* El control del tema muestra únicamente el SVG de sol o luna. */
+.system-theme-button,
+.theme-toggle-label,
+.theme-toggle-text {
+  display: none;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  padding: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  appearance: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+.theme-toggle:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(8deg);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.theme-icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+}
+.theme-icon-sun {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+.theme-icon-moon {
+  opacity: 0;
+  transform: scale(0.6) rotate(-30deg);
+}
+
+html[data-theme="dark"] .theme-icon-sun {
+  opacity: 0;
+  transform: scale(0.6) rotate(30deg);
+}
+
+html[data-theme="dark"] .theme-icon-moon {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .theme-icon-sun {
+    opacity: 0;
+    transform: scale(0.6) rotate(30deg);
+  }
+
+  html:not([data-theme]) .theme-icon-moon {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* Contraste de acentos para el tema oscuro manual */
+html[data-theme="dark"] .check-option.selected {
+  background: color-mix(in srgb, var(--lime) 26%, var(--paper));
+  border-color: color-mix(in srgb, var(--lime) 62%, var(--paper));
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .segmented button.active {
+  background: color-mix(in srgb, var(--blue) 38%, var(--paper));
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .button-light {
+  background: color-mix(in srgb, var(--lime) 70%, var(--paper));
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .button-light span {
+  background: color-mix(in srgb, var(--orange) 70%, var(--paper));
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .contact-art > span {
+  background: color-mix(in srgb, var(--pink) 34%, var(--paper));
+  border-color: color-mix(in srgb, var(--pink) 62%, var(--paper));
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .button-dark span,
+html[data-theme="dark"] .nav-cta span {
+  background: color-mix(in srgb, var(--orange) 70%, var(--paper));
+  color: var(--ink);
+}
+
+/* Las mismas correcciones cuando el modo oscuro viene del sistema */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .check-option.selected {
+    background: color-mix(in srgb, var(--lime) 26%, var(--paper));
+    border-color: color-mix(in srgb, var(--lime) 62%, var(--paper));
+    color: var(--ink);
+  }
+
+  html:not([data-theme]) .segmented button.active {
+    background: color-mix(in srgb, var(--blue) 38%, var(--paper));
+    color: var(--ink);
+  }
+
+  html:not([data-theme]) .button-light {
+    background: color-mix(in srgb, var(--lime) 70%, var(--paper));
+    color: var(--ink);
+  }
+
+  html:not([data-theme]) .button-light span {
+    background: color-mix(in srgb, var(--orange) 70%, var(--paper));
+    color: var(--ink);
+  }
+
+  html:not([data-theme]) .contact-art > span {
+    background: color-mix(in srgb, var(--pink) 34%, var(--paper));
+    border-color: color-mix(in srgb, var(--pink) 62%, var(--paper));
+    color: var(--ink);
+  }
+
+  html:not([data-theme]) .button-dark span,
+  html:not([data-theme]) .nav-cta span {
+    background: color-mix(in srgb, var(--orange) 40%, var(--paper));
+    color: var(--ink);
+  }
+}
+
 @media (max-width: 900px) {
   .section-shell,
   .site-nav {
     width: min(100% - 36px, 1440px);
+  }
+  .quote-result li:before {
+    content: "✓";
+    color: var(--lime);
+    margin-right: 10px;
+    font-size: 10px;
   }
   .section-space {
     padding-block: 90px;
@@ -1099,17 +1380,23 @@ input {
     right: 0;
     left: 0;
     background: var(--ink);
-    color: white;
+    color: var(--paper);
     padding: 30px;
     flex-direction: column;
     align-items: flex-start;
     font-size: 18px;
   }
-  .nav-links.is-open {
+  #nav-links.nav-links.is-open {
     display: flex;
+    left: 0;
+    right: 0;
+    width: auto;
+    border: 3px solid var(--orange);
+    border-radius: 0 0 5px 5px;
   }
+
   .nav-cta {
-    border-color: white;
+    border-color: var(--paper);
   }
   .nav-cta span {
     background: var(--lime);
@@ -1210,6 +1497,10 @@ input {
   .site-footer > p {
     display: none;
   }
+  .nav-links {
+    background: var(--ink);
+    color: var(--paper);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1255,8 +1546,27 @@ main {
     contain: paint;
   }
 
-  .marquee div {
-    max-width: none;
+  .marquee > .marquee-track--desktop {
+    display: none;
+  }
+
+  .marquee > .marquee-track--mobile {
+    display: flex;
+    width: max-content;
+    animation-duration: 18s;
+  }
+
+  .marquee-track > .marquee-group {
+    gap: 8px;
+    padding: 13px 12px 13px 0;
+  }
+
+  .marquee-group span {
+    font-size: 10px;
+  }
+
+  .marquee-group b {
+    font-size: 14px;
   }
 
   .hero-vector {
@@ -1274,5 +1584,38 @@ main {
   }
   .fruit-core {
     font: 700 25px var(--font-geist-mono);
+  }
+}
+
+/* Mantiene el acento atenuado del CTA después de las reglas móviles. */
+html[data-theme="dark"] .nav-cta span {
+  background: color-mix(in srgb, var(--orange) 40%, var(--paper));
+  color: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .nav-cta span {
+    background: color-mix(in srgb, var(--orange) 40%, var(--paper));
+    color: var(--ink);
+  }
+}
+
+@media (max-width: 620px) {
+  .nav-links .theme-controls {
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 18px;
+    margin-top: 6px;
+    border-top: 1px solid var(--paper);
+  }
+
+  .nav-links .theme-toggle {
+    color: var(--paper);
+    border-color: var(--paper);
+  }
+
+  .nav-links .theme-toggle:hover {
+    background: var(--paper);
+    color: var(--ink);
   }
 }
