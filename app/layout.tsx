@@ -136,6 +136,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-MX" suppressHydrationWarning>
+      <head>
+        <script
+          noModule
+          dangerouslySetInnerHTML={{
+            __html: "window.location.replace('/legacy/');",
+          }}
+        />
+        <noscript>
+          <meta httpEquiv="refresh" content="0; url=/legacy/" />
+        </noscript>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <script
           type="application/ld+json"

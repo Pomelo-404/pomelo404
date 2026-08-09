@@ -15,6 +15,7 @@ flowchart TD
   DOMAIN --> CANONICAL["Canonical · https://www.pomelo404.com"]
   SITE --> BRAND["Activos de marca"]
   SITE --> SEO["SEO y social sharing"]
+  SITE --> LEGACY["Fallback independiente · /legacy"]
 
   PAGE --> NAV["Nav + menú móvil"]
   PAGE --> HERO["Hero"]
@@ -50,6 +51,18 @@ flowchart TD
   CSS --> LIGHT["Light · Mediterránea · :root"]
   CSS --> DARK["Dark · Neón nocturno"]
   CSS --> ACCESS["Contraste + reduced-motion + overflow móvil"]
+  CSS --> COMPAT["Compatibilidad progresiva"]
+  COMPAT --> FIREFOX["Firefox · range + medidas normalizadas"]
+  COMPAT --> SAMSUNG["Samsung Internet · tonos derivados fijos + color-scheme"]
+  COMPAT --> OLD["Sin aspect-ratio / Grid · una columna legible"]
+  COMPAT --> IE["IE10/11 · lectura estática sin hidratación"]
+
+  LEGACY --> LEGACY_HTML["public/legacy/index.html · contenido"]
+  LEGACY --> LEGACY_CSS["public/legacy/legacy.css · CSS tradicional"]
+  LEGACY --> LEGACY_JS["public/legacy/legacy.js · cotizador ES5"]
+  LEGACY --> LEGACY_ROUTE["next.config.ts · rewrite /legacy"]
+  LAYOUT --> LEGACY_DETECT["script nomodule + noscript"]
+  LEGACY_DETECT --> LEGACY
 
   BRAND --> ISO["Isotipo elegido · Pixel"]
   ISO --> SIGNATURE["Firma de correo HTML"]
@@ -75,6 +88,11 @@ flowchart TD
 - `components/ReviewsCarousel.tsx`: interacción, autoplay, controles, swipe y accesibilidad.
 - `data/reviews.ts`: ocho testimonios provisionales separados de la vista.
 - `app/globals.css`: estilos del carrusel para 3, 2 y 1 tarjetas visibles según el ancho.
+- `app/globals.css`: secciones comentadas, colores derivados sin `color-mix()`, controles Firefox y fallbacks progresivos.
+- `README-COMPATIBILITY.md`: niveles de soporte, límites de Next.js 16 y protocolo de prueba entre navegadores.
+- `public/legacy/`: versión estática sin React con proyectos, reviews, contacto y cotizador básico.
+- `app/layout.tsx`: redirección de navegadores sin módulos y visitantes sin JavaScript hacia `/legacy`.
+- `next.config.ts`: expone el HTML estático mediante la ruta limpia `/legacy`.
 
 ## Contratos que no deben romperse
 
@@ -92,6 +110,11 @@ flowchart TD
 12. La imagen OG pública debe ser `og-pomelo404-v2.png`; Neón y Editorial permanecen como alternativas no declaradas.
 13. El dominio canónico es `https://www.pomelo404.com`; todas las URLs públicas deben usar `www`.
 14. Las reviews permanecen como placeholders hasta recibir testimonios autorizados; el carrusel no requiere librerías externas.
+15. Los siete colores principales de `:root` permanecen intactos; los tonos secundarios usan variables derivadas fijas.
+16. En Samsung Internet se declara `color-scheme` explícitamente para reducir la recolorización automática del navegador.
+17. La compatibilidad con IE10/11 es únicamente visual: Next.js 16 no garantiza hidratación ni interacción allí.
+18. `/legacy` no depende del bundle de React; su JavaScript debe conservar sintaxis ES5.
+19. El número de WhatsApp en la versión completa y legacy debe mantenerse sincronizado.
 
 ## Próximos pasos pendientes
 
@@ -102,3 +125,4 @@ flowchart TD
 - Confirmar correo, redes y número de WhatsApp Business.
 - Añadir analítica para cotizador, WhatsApp y contacto.
 - Verificar visualmente el marquee en iPhone y en anchos de 320, 390, 620 y 1440 px.
+- Comparar capturas en Firefox y Samsung Internet con el mismo tema y brillo antes de ajustar nuevamente la paleta.

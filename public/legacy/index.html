@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>pomelo404 | Versión básica</title>
+    <meta
+      name="description"
+      content="Versión básica de pomelo404 para navegadores antiguos. Diseño y desarrollo web en Next.js."
+    >
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/legacy/legacy.css">
+  </head>
+  <body>
+    <header class="site-header wrap">
+      <a class="logo" href="#inicio">pomelo<span>404</span></a>
+      <nav aria-label="Navegación principal">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#cotizador">Cotizador</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero wrap">
+        <p class="eyebrow">Estudio web independiente · CDMX</p>
+        <h1>Sitios que hacen <em>click.</em></h1>
+        <p class="lede">
+          Diseñamos y desarrollamos experiencias digitales frescas para marcas
+          que quieren verse claras, vivas y difíciles de olvidar.
+        </p>
+        <p>
+          <a class="button" href="#cotizador">Cotiza tu proyecto</a>
+          <a class="text-link" href="/">Abrir versión completa</a>
+        </p>
+      </section>
+
+      <section id="proyectos" class="section wrap">
+        <p class="eyebrow">01 / Proyectos</p>
+        <h2>Trabajo que se mueve.</h2>
+        <div class="cards">
+          <article class="card project coral">
+            <p>Miga · E-commerce · 2026</p>
+            <h3>m.</h3>
+            <p>Una panadería digital que se siente recién horneada.</p>
+          </article>
+          <article class="card project blue">
+            <p>Faro · Plataforma · 2025</p>
+            <h3>+</h3>
+            <p>Cultura y agenda local sin perderse en el scroll.</p>
+          </article>
+          <article class="card project lime">
+            <p>Nido · Brand site · 2025</p>
+            <h3>n/</h3>
+            <p>Hospitalidad cálida, reservaciones simples.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cotizador" class="section quote-section">
+        <div class="wrap">
+          <p class="eyebrow">02 / Cotizador</p>
+          <h2>Una cotización rápida.</h2>
+          <form id="legacy-quote" class="quote-box">
+            <div class="form-column">
+              <p>
+                <label for="project-name">Nombre del proyecto (opcional)</label>
+                <input id="project-name" name="projectName" type="text" maxlength="80">
+              </p>
+              <p>
+                <label for="project-type">Tipo de proyecto</label>
+                <select id="project-type" name="projectType">
+                  <option value="landing">Landing page</option>
+                  <option value="website">Sitio de marca</option>
+                  <option value="commerce">E-commerce</option>
+                </select>
+              </p>
+              <p>
+                <label for="pages">Número de páginas</label>
+                <select id="pages" name="pages">
+                  <option value="1">1 página</option>
+                  <option value="2">2 páginas</option>
+                  <option value="3">3 páginas</option>
+                  <option value="4">4 páginas</option>
+                  <option value="5">5 páginas</option>
+                  <option value="6">6 páginas</option>
+                  <option value="7">7 páginas</option>
+                  <option value="8">8 páginas</option>
+                  <option value="9">9 páginas</option>
+                  <option value="10">10 páginas</option>
+                </select>
+              </p>
+              <fieldset>
+                <legend>Extras</legend>
+                <label class="check"><input type="checkbox" name="addon" value="brand"> Identidad visual</label>
+                <label class="check"><input type="checkbox" name="addon" value="copy"> Copywriting</label>
+                <label class="check"><input type="checkbox" name="addon" value="motion"> Motion avanzado</label>
+                <label class="check"><input type="checkbox" name="addon" value="cms"> CMS autogestionable</label>
+              </fieldset>
+              <p>
+                <label for="timeline">Entrega</label>
+                <select id="timeline" name="timeline">
+                  <option value="normal">6–8 semanas</option>
+                  <option value="express">Express</option>
+                </select>
+              </p>
+            </div>
+            <div class="result-column" aria-live="polite">
+              <p>Estimado desde</p>
+              <strong id="estimate">$24,000 MXN</strong>
+              <p id="estimate-range">Rango probable: $21,600 — $26,400 MXN</p>
+              <button class="button button-light" type="submit">Enviar por WhatsApp</button>
+              <p class="fine-print">Estimado inicial + IVA. La propuesta final puede variar.</p>
+            </div>
+          </form>
+          <noscript>
+            <p class="notice">Este cotizador necesita JavaScript. También puedes escribir a <a href="mailto:hola@pomelo404.com">hola@pomelo404.com</a>.</p>
+          </noscript>
+        </div>
+      </section>
+
+      <section id="reviews" class="section reviews-section">
+        <div class="wrap">
+          <p class="eyebrow">03 / Reviews · testimonios de muestra</p>
+          <h2>Clientes contentos.</h2>
+          <div class="cards reviews-list">
+            <blockquote class="card">“Entendieron la idea antes de que nosotros supiéramos explicarla.”<cite>Sofía R. · Miga</cite></blockquote>
+            <blockquote class="card">“Pasamos de explicar demasiado a recibir leads que ya entendían el valor.”<cite>Andrés M. · Faro</cite></blockquote>
+            <blockquote class="card">“Proceso claro, cero drama y un resultado que da gusto compartir.”<cite>Paula G. · Nido</cite></blockquote>
+            <blockquote class="card">“Tradujeron una marca compleja en una experiencia sencilla y rápida.”<cite>Mariana L. · Bruma</cite></blockquote>
+            <blockquote class="card">“El cotizador nos ayudó a iniciar conversaciones mucho más claras.”<cite>Diego C. · Norte</cite></blockquote>
+            <blockquote class="card">“Se ve fresco y funciona mejor en todos los dispositivos.”<cite>Renata V. · Lumbre</cite></blockquote>
+            <blockquote class="card">“La colaboración se sintió ligera y organizada.”<cite>Tomás A. · Patio</cite></blockquote>
+            <blockquote class="card">“Nuestra propuesta se entiende en segundos sin perder carácter.”<cite>Elena S. · Alba</cite></blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="section contact wrap">
+        <p class="eyebrow">04 / Contacto</p>
+        <h2>¿Traes una buena idea?</h2>
+        <p>Respondemos en 1–2 días hábiles.</p>
+        <p><a class="email" href="mailto:hola@pomelo404.com">hola@pomelo404.com</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <p><strong>pomelo404</strong> · Webs frescas, sin partes amargas.</p>
+      <p>© 2026 · <a href="/">Versión completa</a></p>
+    </footer>
+
+    <script src="/legacy/legacy.js"></script>
+  </body>
+</html>

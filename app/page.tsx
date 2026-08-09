@@ -296,6 +296,7 @@ export default function Home() {
         <p>Webs frescas, sin partes amargas.</p>
         <div>
           <span>© 2026</span>
+          <a href="/legacy/">Versión básica</a>
           <a href="#inicio">Volver arriba ↑</a>
         </div>
       </footer>
