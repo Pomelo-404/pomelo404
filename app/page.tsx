@@ -191,10 +191,7 @@ export default function Home() {
               </span>
             </a>
             <a className="text-link" href="#proyectos">
-              Ver proyectos{" "}
-              <span className="arrow" aria-hidden="true">
-                &#8595;&#65038;
-              </span>
+              Ver proyectos <span>&#8595;&#65038;</span>
             </a>
           </div>
         </div>
