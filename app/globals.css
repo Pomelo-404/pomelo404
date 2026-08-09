@@ -1852,6 +1852,9 @@ html[data-theme="dark"] .nav-cta span {
     background: var(--paper);
     color: var(--ink);
   }
+  .site-footer > div {
+    font-size: 10px !important;
+  }
 }
 
 /* 12 · Sistema de isotipos vectoriales construido únicamente con CSS. */
