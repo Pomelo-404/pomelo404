@@ -160,7 +160,10 @@ export default function Home() {
             className="nav-cta"
             onClick={() => setMenuOpen(false)}
           >
-            Cotiza ahora <span>↗</span>
+            Cotiza ahora{" "}
+            <span className="arrow" aria-hidden="true">
+              &#8599;&#65038;
+            </span>
           </a>
           <div className="theme-controls">
             <ThemeToggle />
@@ -182,10 +185,16 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#cotizador">
-              Cotiza en 2 min <span>↘</span>
+              Cotiza en 2 min{" "}
+              <span className="arrow" aria-hidden="true">
+                &#8600;&#65038;
+              </span>
             </a>
             <a className="text-link" href="#proyectos">
-              Ver proyectos <span>↓</span>
+              Ver proyectos{" "}
+              <span className="arrow" aria-hidden="true">
+                &#8595;&#65038;
+              </span>
             </a>
           </div>
         </div>
@@ -248,7 +257,12 @@ export default function Home() {
                   <span>pomelo404 / 0{index + 1}</span>
                 </div>
                 <strong>{project.mark}</strong>
-                <div className="project-pill">View project ↗</div>
+                <div className="project-pill">
+                  View project{" "}
+                  <span className="arrow" aria-hidden="true">
+                    &#8599;&#65038;
+                  </span>
+                </div>
               </div>
               <div className="project-meta">
                 <div>
@@ -283,7 +297,7 @@ export default function Home() {
             1–2 días hábiles.
           </p>
           <a href="mailto:hola@pomelo404.com" className="contact-email">
-            hola@pomelo404.com <span>↗</span>
+            hola@pomelo404.com <span>&#8599;&#65038;</span>
           </a>
         </div>
       </section>
