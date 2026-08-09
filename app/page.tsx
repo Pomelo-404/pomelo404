@@ -310,7 +310,7 @@ export default function Home() {
       <section id="contacto" className="contact section-shell">
         <div className="contact-art" aria-hidden="true">
           <div className="contact-fruit">✦</div>
-          <span>say hi!</span>
+          <span>¡Di hola!</span>
         </div>
         <div className="contact-copy">
           <p className="section-index">04 / Contacto</p>
