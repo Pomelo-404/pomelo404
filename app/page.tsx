@@ -85,7 +85,7 @@ export default function Home() {
           >
             Cotiza ahora{" "}
             <span className="arrow" aria-hidden="true">
-              ↗
+              &#8599;&#65038;
             </span>
           </a>
         </nav>
@@ -184,7 +184,7 @@ export default function Home() {
                 <div className="project-pill">
                   View project{" "}
                   <span className="arrow" aria-hidden="true">
-                    ↗
+                    &#8599;&#65038;
                   </span>
                 </div>
               </div>
@@ -244,7 +244,7 @@ export default function Home() {
           <a href="mailto:hola@pomelo404.com" className="contact-email">
             hola@pomelo404.com{" "}
             <span className="arrow" aria-hidden="true">
-              ↗
+              &#8599;&#65038;
             </span>
           </a>
         </div>
