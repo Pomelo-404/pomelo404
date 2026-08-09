@@ -105,10 +105,16 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#cotizador">
-              Cotiza en 2 min <span>↘</span>
+              Cotiza en 2 min{" "}
+              <span className="arrow" aria-hidden="true">
+                &#8600;&#65038;
+              </span>
             </a>
             <a className="text-link" href="#proyectos">
-              Ver proyectos <span>↓</span>
+              Ver proyectos{" "}
+              <span className="arrow" aria-hidden="true">
+                &#8595;&#65038;
+              </span>
             </a>
           </div>
         </div>
