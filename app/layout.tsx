@@ -60,13 +60,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_MX",
-    url: "/",
+    url: "https://www.pomelo404.com/",
     siteName: "pomelo404",
     title,
     description,
     images: [
       {
-        url: "/og-pomelo404-v2.png",
+        url: "/og-pomelo404-editorial.png",
         width: 1200,
         height: 630,
         alt: "pomelo404 — Sitios que hacen click",
