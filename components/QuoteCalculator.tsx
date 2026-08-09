@@ -176,7 +176,10 @@ export default function QuoteCalculator() {
             rel="noopener noreferrer"
             aria-label="Enviar esta cotización por WhatsApp"
           >
-            Enviar por WhatsApp <span>↗</span>
+            Enviar por WhatsApp{" "}
+            <span className="arrow" aria-hidden="true">
+              &#8599;&#65038;
+            </span>
           </a>
           <small>
             * Estimación orientativa. Alcance y precio final se confirman en
