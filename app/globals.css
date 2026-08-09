@@ -209,6 +209,24 @@ input {
   color: var(--orange);
 }
 
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.footer-link {
+  color: inherit; /* o el color que quieras por defecto */
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--orange);
+}
+
 .nav-cta {
   border: 1.5px solid var(--ink);
   border-radius: 100px;

@@ -294,10 +294,17 @@ export default function Home() {
           <Iso variant="pixel" size={22} />
         </a>
         <p>Webs frescas, sin partes amargas.</p>
-        <div>
+        <div className="footer-links">
           <span>© 2026</span>
-          <a href="/legacy/">Versión básica</a>
-          <a href="#inicio">Volver arriba ↑</a>
+          <a className="footer-link" href="/legacy/">
+            Versión básica
+          </a>
+          <a className="footer-link" href="#inicio">
+            Volver arriba{" "}
+            <span className="arrow" aria-hidden="true">
+              &#8593;&#65038;
+            </span>
+          </a>
         </div>
       </footer>
     </main>
