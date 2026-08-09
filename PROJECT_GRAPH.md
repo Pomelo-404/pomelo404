@@ -20,8 +20,9 @@ flowchart TD
   D1 --> D4["Estimado MXN"]
   D2 --> D4
   D3 --> D4
-  D4 --> D5["CTA por email con resumen"]
-  D5 --> D6["Siguiente: formulario/API + CRM"]
+  D4 --> D5["CTA a WhatsApp con resumen"]
+  D5 --> D6["Placeholder: reemplazar número comercial"]
+  D6 --> D7["Siguiente: formulario/API + CRM"]
 
   E --> E1["Reviews — placeholders"]
   E1 --> E2["Pendiente: testimonios autorizados"]
@@ -36,9 +37,15 @@ flowchart TD
 
   A --> H["Stack"]
   H --> H1["Next.js App Router + React + TypeScript"]
-  H --> H2["CSS propio + estado local"]
+  H --> H2["CSS propio + componentes modulares"]
   H --> H3["Vercel"]
   H3 --> H4["NEXT_PUBLIC_SITE_URL"]
+
+  D --> I["Arquitectura del cotizador"]
+  I --> I1["components/QuoteCalculator.tsx · vista"]
+  I --> I2["hooks/useQuote.ts · estado"]
+  I --> I3["lib/quotation.ts · cálculo + WhatsApp"]
+  I --> I4["data/pricing.ts · precios y tipos"]
 ```
 
 ## Reglas de producto
@@ -53,6 +60,6 @@ flowchart TD
 
 1. Reemplazar los tres proyectos y reviews de ejemplo por contenido real.
 2. Confirmar correo, redes y URL final.
-3. Definir si la cotización se guarda en un CRM, se envía por email o ambas.
+3. Reemplazar `WHATSAPP_NUMBER` por el número comercial real y definir si la cotización también se guarda en un CRM.
 4. Añadir analítica de `inicio_cotizador`, `cotizacion_generada` y `contacto_enviado`.
 5. Conectar el dominio a Vercel y cargar `NEXT_PUBLIC_SITE_URL`.

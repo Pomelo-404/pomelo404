@@ -275,7 +275,7 @@ input {
 .fruit-core {
   position: relative;
   z-index: 1;
-  font: 700 13px var(--font-geist-mono);
+  font: 700 40px var(--font-geist-mono);
   transform: rotate(-12deg);
 }
 .orbit {
@@ -759,6 +759,46 @@ input {
   background: var(--ink);
   color: white;
 }
+
+.project-name-field {
+  display: grid;
+  gap: 9px;
+  margin-top: 18px;
+}
+.project-name-field > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 650;
+}
+.project-name-field small {
+  font: 500 9px var(--font-geist-mono);
+  text-transform: uppercase;
+  color: #706c64;
+  letter-spacing: 0.5px;
+}
+.project-name-field input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+  padding: 14px 15px;
+  border-radius: 0;
+  outline: none;
+  font-size: 13px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.project-name-field input::placeholder {
+  color: #9b978f;
+}
+.project-name-field input:focus {
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--pink);
+}
+
 .quote-result {
   background: var(--ink);
   color: white;
@@ -1035,6 +1075,9 @@ input {
   .contact-fruit {
     font-size: 70px;
   }
+  .fruit-core {
+    font: 700 25px var(--font-geist-mono);
+  }
 }
 @media (max-width: 620px) {
   .site-nav {
@@ -1222,5 +1265,8 @@ main {
 
   .contact-art > span {
     right: 0;
+  }
+  .fruit-core {
+    font: 700 25px var(--font-geist-mono);
   }
 }
