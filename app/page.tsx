@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import QuoteCalculator from "@/components/QuoteCalculator";
+import Iso from "@/components/Iso";
 
 const projects = [
   {
@@ -151,8 +152,9 @@ export default function Home() {
       <header className="site-nav">
         <a className="logo" href="#inicio" aria-label="pomelo404, inicio">
           pomelo<span>404</span>
-          <i />
+          <Iso variant="pixel" size={22} />
         </a>
+
         <button
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -330,8 +332,9 @@ export default function Home() {
       <footer className="site-footer section-shell">
         <a className="logo" href="#inicio">
           pomelo<span>404</span>
-          <i />
+          <Iso variant="pixel" size={22} />
         </a>
+
         <p>Webs frescas, sin partes amargas.</p>
         <div>
           <span>© 2026</span>
