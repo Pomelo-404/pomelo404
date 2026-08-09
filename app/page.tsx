@@ -334,7 +334,6 @@ export default function Home() {
           pomelo<span>404</span>
           <Iso variant="pixel" size={22} />
         </a>
-
         <p>Webs frescas, sin partes amargas.</p>
         <div>
           <span>© 2026</span>
