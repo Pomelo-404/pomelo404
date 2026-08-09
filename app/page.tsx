@@ -311,10 +311,7 @@ export default function Home() {
             Versión básica
           </a>
           <a className="footer-link" href="#inicio">
-            Volver arriba{" "}
-            <span className="arrow" aria-hidden="true">
-              &#8593;&#65038;
-            </span>
+            Volver arriba <span>&#8593;&#65038;</span>
           </a>
         </div>
       </footer>
