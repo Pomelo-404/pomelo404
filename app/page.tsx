@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import Iso from "@/components/Iso";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
@@ -85,6 +85,8 @@ function ThemeToggle() {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -104,6 +106,32 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    function closeMenuFromOutside(event: PointerEvent) {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (mobileMenuRef.current?.contains(target)) return;
+      if (menuToggleRef.current?.contains(target)) return;
+
+      setMenuOpen(false);
+    }
+
+    function closeMenuWithKeyboard(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      menuToggleRef.current?.focus({ preventScroll: true });
+    }
+
+    document.addEventListener("pointerdown", closeMenuFromOutside);
+    document.addEventListener("keydown", closeMenuWithKeyboard);
+    return () => {
+      document.removeEventListener("pointerdown", closeMenuFromOutside);
+      document.removeEventListener("keydown", closeMenuWithKeyboard);
+    };
+  }, [menuOpen]);
+
   return (
     <main>
       <header className="site-nav">
@@ -113,6 +141,7 @@ export default function Home() {
         </a>
 
         <button
+          ref={menuToggleRef}
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-expanded={menuOpen}
@@ -122,6 +151,7 @@ export default function Home() {
           <span aria-hidden="true">{menuOpen ? "×" : "+"}</span>
         </button>
         <nav
+          ref={mobileMenuRef}
           id="nav-links"
           className={menuOpen ? "nav-links is-open" : "nav-links"}
           aria-label="Navegación principal"
@@ -214,7 +244,7 @@ export default function Home() {
         <ProjectShowcase />
       </section>
 
-      <QuoteCalculator />
+      <QuoteCalculator key="quote-default-landing-1" />
 
       <ReviewsCarousel />
 

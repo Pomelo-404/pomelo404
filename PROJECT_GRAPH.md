@@ -33,10 +33,11 @@ flowchart TD
   FORMA_EXPAND --> FORMA_HEADER["Descripción + servicios + enlace + Cerrar"]
   FORMA_EXPAND --> FORMA_EMBED["Iframe lazy de formalibre.mx · desktop y móvil"]
   FORMA_EXPAND --> FORMA_EXIT["Salida · botón Cerrar o Escape"]
-  FORMA --> FORMA_ASSET["public/projects/forma-libre/cover.webp"]
+  FORMA --> FORMA_ASSET["cover.webp · HD 1780×1080 · WebP · loading eager"]
   FORMA --> FORMA_ANALYTICS["Vercel Analytics · abrir / cerrar / visitar"]
 
   NAV --> THEME["Botón único · sol / luna"]
+  NAV --> MOBILE_CLOSE["Menú móvil · cierra con enlace, clic exterior o Escape"]
   THEME --> AUTO["Automático · prefers-color-scheme"]
   THEME --> MANUAL["Manual · data-theme + localStorage"]
   MANUAL --> RETURN["Segundo clic o cambio del sistema → automático"]
@@ -55,6 +56,9 @@ flowchart TD
   QUOTE --> QUOTE_VIEW
   QUOTE_VIEW --> HOOK["hooks/useQuote.ts · estado derivado"]
   HOOK --> PRICING["data/pricing.ts · tipos y precios"]
+  HOOK --> QUOTE_DEFAULT["Default · Landing / 1 página / sin extras / normal"]
+  PRICING --> LANDING_CURVE["Landing sin extras · 1 pág $8k → 20 págs $91k"]
+  PRICING --> OTHER_CURVES["Marca / E-commerce · conservan $3,500 por página extra"]
   HOOK --> LOGIC["lib/quotation.ts · cálculo y mensaje"]
   LOGIC --> WA["WhatsApp · wa.me"]
   WA --> PLACEHOLDER["Número actual es placeholder"]
@@ -107,7 +111,7 @@ flowchart TD
 - `data/reviews.ts`: ocho testimonios provisionales separados de la vista.
 - `components/ProjectShowcase.tsx`: primer caso real expandible, preview responsive y analítica.
 - `data/projects.ts`: contenido y alcance de Forma Libre, además de los placeholders restantes.
-- `public/projects/forma-libre/cover.webp`: imagen de la mitad fotográfica de la tarjeta y fallback futuro.
+- `public/projects/forma-libre/cover.webp`: captura HD de 1780×1080 para la mitad fotográfica de la tarjeta y fallback futuro.
 - `app/globals.css`: estilos del carrusel para 3, 2 y 1 tarjetas visibles según el ancho.
 - `app/globals.css`: secciones comentadas, colores derivados sin `color-mix()`, controles Firefox y fallbacks progresivos.
 - `README-COMPATIBILITY.md`: niveles de soporte, límites de Next.js 16 y protocolo de prueba entre navegadores.
@@ -141,6 +145,12 @@ flowchart TD
 22. El iframe de Forma Libre se monta al abrir el modal y ocupa todo el espacio disponible bajo la descripción, tanto en escritorio como en móvil.
 23. `layout.tsx`, `package.json` y `pnpm-lock.yaml` gestionan Analytics/Speed Insights por separado y no se sobrescriben desde este módulo.
 24. El modal congela la posición de la landing con `body: fixed`, usa foco con `preventScroll` y restaura el punto exacto al cerrar; `Escape` también devuelve el foco a la tarjeta.
+25. La captura de Forma Libre usa `loading="eager"` porque Next.js la detecta como elemento LCP; las demás imágenes conservan carga diferida.
+26. La landing normal sin extras cuesta $8,000 con una página y $91,000 con veinte; identidad, copy, motion, CMS y entrega express se suman después.
+27. El precio por página es específico por tipo: cambiar la curva de landing no debe alterar Sitio de marca ni E-commerce.
+28. El menú móvil escucha `pointerdown` únicamente mientras está abierto; clic/touch fuera del nav y del botón lo cierra, y `Escape` devuelve el foco al botón.
+29. El cotizador inicia en Landing, una página, sin extras y entrega normal; su estimado visible inicial es $8,000 MXN + IVA.
+30. `QuoteCalculator` conserva una key de versión para que el cambio de defaults fuerce un remount y no herede el estado anterior de Fast Refresh.
 
 ## Próximos pasos pendientes
 

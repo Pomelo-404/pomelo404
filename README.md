@@ -1,10 +1,20 @@
-# Forma Libre · tarjeta invertida v4
+# Cotizador · default forzado v9
 
-Este ajuste solo modifica estilos:
+Corrige el caso en que Fast Refresh conserva el estado anterior del cotizador.
 
-- Captura de Forma Libre en el lado izquierdo.
-- Overlay naranja diagonal en el lado derecho.
-- `F` con una pila cursiva del sistema: Snell Roundhand, Brush Script MT, Segoe Script y fallback cursive.
-- Posiciones adaptadas también para móvil y fallback rectangular para navegadores sin `clip-path`.
+## Estado inicial esperado
 
-Si ya instalaste la v3, reemplaza `app/globals.css`. `PROJECT_GRAPH.md` solo documenta la nueva composición.
+- Landing page seleccionada.
+- 1 página.
+- Sin extras.
+- Entrega normal.
+- $8,000 MXN + IVA.
+
+## Aplicación
+
+1. Copia el contenido sobre la raíz del repositorio.
+2. Detén el servidor de desarrollo.
+3. Ejecuta nuevamente `pnpm dev`.
+4. Haz una recarga completa del navegador: `Cmd + Shift + R` en macOS o `Ctrl + Shift + R` en Windows.
+
+`app/page.tsx` incluye una key de versión en `QuoteCalculator` para que React descarte el estado preservado. No es necesario borrar datos del navegador.

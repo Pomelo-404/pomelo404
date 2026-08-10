@@ -6,10 +6,10 @@ import { calculateEstimate, createWhatsAppUrl } from "@/lib/quotation";
 
 export function useQuote() {
   const [projectName, setProjectName] = useState("");
-  const [projectType, setProjectType] = useState<ProjectType>("website");
-  const [pages, setPages] = useState(6);
+  const [projectType, setProjectType] = useState<ProjectType>("landing");
+  const [pages, setPages] = useState(1);
   const [timeline, setTimeline] = useState<Timeline>("normal");
-  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>(["motion"]);
+  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
 
   const input = useMemo(
     () => ({ projectName, projectType, pages, timeline, selectedAddOns }),

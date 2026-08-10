@@ -1,7 +1,6 @@
 import {
   ADD_ONS,
   EXPRESS_MULTIPLIER,
-  PRICE_PER_EXTRA_PAGE,
   PROJECT_TYPES,
   type AddOn,
   type ProjectType,
@@ -31,8 +30,10 @@ export function calculateEstimate({
   timeline,
   selectedAddOns,
 }: QuoteInput) {
-  const base = PROJECT_TYPES.find((type) => type.id === projectType)?.base ?? 0;
-  const pagesCost = Math.max(0, pages - 1) * PRICE_PER_EXTRA_PAGE;
+  const project = PROJECT_TYPES.find((type) => type.id === projectType);
+  const base = project?.base ?? 0;
+  const pagesCost =
+    Math.max(0, pages - 1) * (project?.pricePerExtraPage ?? 0);
   const extrasCost = ADD_ONS.filter((item) =>
     selectedAddOns.includes(item.id),
   ).reduce((sum, item) => sum + item.price, 0);

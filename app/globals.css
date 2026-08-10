@@ -655,7 +655,7 @@ input {
   background: var(--blue);
 }
 .project-card.lime .project-visual {
-  background: var(--lime);
+  background: var(--lime-70-paper);
 }
 .project-browser {
   position: absolute;
@@ -1494,7 +1494,6 @@ html[data-theme="dark"] .review-card:nth-child(4n) {
   right: -20px;
   top: 16%;
   background: var(--lime);
-  border: 1.5px solid var(--ink);
   border-radius: 100%;
   padding: 28px 18px;
   font: 700 15px var(--font-geist-mono);

@@ -7,9 +7,14 @@
   }
 
   var projectPrices = {
-    landing: 24000,
+    landing: 8000,
     website: 48000,
     commerce: 78000
+  };
+  var extraPagePrices = {
+    landing: 83000 / 19,
+    website: 3500,
+    commerce: 3500
   };
   var projectLabels = {
     landing: "Landing page",
@@ -56,7 +61,7 @@
     var total = projectPrices[type] || 0;
     var index;
 
-    total += Math.max(0, pages - 1) * 3500;
+    total += Math.max(0, pages - 1) * (extraPagePrices[type] || 0);
     for (index = 0; index < addons.length; index += 1) {
       total += addonPrices[addons[index]] || 0;
     }

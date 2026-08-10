@@ -7,10 +7,30 @@ export const PROJECT_TYPES: Array<{
   label: string;
   note: string;
   base: number;
+  pricePerExtraPage: number;
 }> = [
-  { id: "landing", label: "Landing page", note: "Una idea, una acción", base: 24000 },
-  { id: "website", label: "Sitio de marca", note: "Historia, servicios y leads", base: 48000 },
-  { id: "commerce", label: "E-commerce", note: "Catálogo y checkout", base: 78000 },
+  {
+    id: "landing",
+    label: "Landing page",
+    note: "Una idea, una acción",
+    base: 8000,
+    // Ancla la curva en $8,000 (1 página) y $91,000 (20 páginas).
+    pricePerExtraPage: (91_000 - 8_000) / 19,
+  },
+  {
+    id: "website",
+    label: "Sitio de marca",
+    note: "Historia, servicios y leads",
+    base: 48000,
+    pricePerExtraPage: 3500,
+  },
+  {
+    id: "commerce",
+    label: "E-commerce",
+    note: "Catálogo y checkout",
+    base: 78000,
+    pricePerExtraPage: 3500,
+  },
 ];
 
 export const ADD_ONS: Array<{
@@ -24,5 +44,4 @@ export const ADD_ONS: Array<{
   { id: "cms", label: "CMS autogestionable", price: 10000 },
 ];
 
-export const PRICE_PER_EXTRA_PAGE = 3500;
 export const EXPRESS_MULTIPLIER = 1.2;
