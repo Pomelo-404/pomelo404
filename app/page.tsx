@@ -4,30 +4,7 @@ import { useEffect, useState } from "react";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import Iso from "@/components/Iso";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
-
-const projects = [
-  {
-    name: "Miga",
-    category: "E-commerce · 2026",
-    copy: "Una panadería digital que se siente recién horneada.",
-    tone: "coral",
-    mark: "m.",
-  },
-  {
-    name: "Faro",
-    category: "Plataforma · 2025",
-    copy: "Cultura y agenda local sin perderse en el scroll.",
-    tone: "blue",
-    mark: "✦",
-  },
-  {
-    name: "Nido",
-    category: "Brand site · 2025",
-    copy: "Hospitalidad cálida, reservaciones simples.",
-    tone: "lime",
-    mark: "n/",
-  },
-];
+import ProjectShowcase from "@/components/ProjectShowcase";
 
 const desktopMarqueeItems = [
   "Diseño con intención",
@@ -160,10 +137,7 @@ export default function Home() {
             className="nav-cta"
             onClick={() => setMenuOpen(false)}
           >
-            Cotiza ahora{" "}
-            <span className="arrow" aria-hidden="true">
-              &#8599;&#65038;
-            </span>
+            Cotiza ahora <span>↗</span>
           </a>
           <div className="theme-controls">
             <ThemeToggle />
@@ -185,13 +159,10 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#cotizador">
-              Cotiza en 2 min{" "}
-              <span className="arrow" aria-hidden="true">
-                &#8600;&#65038;
-              </span>
+              Cotiza en 2 min <span>↘</span>
             </a>
             <a className="text-link" href="#proyectos">
-              Ver proyectos <span>&#8595;&#65038;</span>
+              Ver proyectos <span>↓</span>
             </a>
           </div>
         </div>
@@ -240,37 +211,7 @@ export default function Home() {
             hechos para conectar y convertir.
           </p>
         </div>
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <article
-              className={`project-card ${project.tone}`}
-              key={project.name}
-            >
-              <div className="project-visual">
-                <div className="project-browser">
-                  <i />
-                  <i />
-                  <i />
-                  <span>pomelo404 / 0{index + 1}</span>
-                </div>
-                <strong>{project.mark}</strong>
-                <div className="project-pill">
-                  View project{" "}
-                  <span className="arrow" aria-hidden="true">
-                    &#8599;&#65038;
-                  </span>
-                </div>
-              </div>
-              <div className="project-meta">
-                <div>
-                  <p>{project.category}</p>
-                  <h3>{project.name}</h3>
-                </div>
-                <p>{project.copy}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <ProjectShowcase />
       </section>
 
       <QuoteCalculator />
@@ -294,7 +235,7 @@ export default function Home() {
             1–2 días hábiles.
           </p>
           <a href="mailto:hola@pomelo404.com" className="contact-email">
-            hola@pomelo404.com <span>&#8599;&#65038;</span>
+            hola@pomelo404.com <span>↗</span>
           </a>
         </div>
       </section>
@@ -305,14 +246,10 @@ export default function Home() {
           <Iso variant="pixel" size={22} />
         </a>
         <p>Webs frescas, sin partes amargas.</p>
-        <div className="footer-links">
+        <div>
           <span>© 2026</span>
-          <a className="footer-link" href="/legacy/">
-            Versión básica
-          </a>
-          <a className="footer-link" href="#inicio">
-            Volver arriba <span>&#8593;&#65038;</span>
-          </a>
+          <a href="/legacy/">Versión básica</a>
+          <a href="#inicio">Volver arriba ↑</a>
         </div>
       </footer>
     </main>

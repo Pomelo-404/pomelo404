@@ -1,19 +1,10 @@
-# pomelo404
+# Forma Libre · tarjeta invertida v4
 
-Landing page de un estudio de desarrollo web, construida con Next.js, React y TypeScript para desplegarse en Vercel.
+Este ajuste solo modifica estilos:
 
-## Desarrollo local
+- Captura de Forma Libre en el lado izquierdo.
+- Overlay naranja diagonal en el lado derecho.
+- `F` con una pila cursiva del sistema: Snell Roundhand, Brush Script MT, Segoe Script y fallback cursive.
+- Posiciones adaptadas también para móvil y fallback rectangular para navegadores sin `clip-path`.
 
-```bash
-pnpm install
-pnpm dev
-```
-
-Abre `http://localhost:3000`.
-
-## Validación
-
-```bash
-pnpm build
-```
-
+Si ya instalaste la v3, reemplaza `app/globals.css`. `PROJECT_GRAPH.md` solo documenta la nueva composición.

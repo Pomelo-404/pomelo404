@@ -20,10 +20,21 @@ flowchart TD
   PAGE --> NAV["Nav + menú móvil"]
   PAGE --> HERO["Hero"]
   PAGE --> MARQUEE["Marquee responsive"]
-  PAGE --> PROJECTS["Proyectos · Miga / Faro / Nido"]
+  PAGE --> PROJECTS["Proyectos · Forma Libre / Faro / Nido"]
   PAGE --> REVIEWS["Reviews"]
   PAGE --> CONTACT["Contacto"]
   PAGE --> QUOTE_VIEW["components/QuoteCalculator.tsx"]
+
+  PROJECTS --> PROJECT_VIEW["components/ProjectShowcase.tsx"]
+  PROJECT_VIEW --> PROJECT_DATA["data/projects.ts"]
+  PROJECT_DATA --> FORMA["Forma Libre · primer proyecto real"]
+  FORMA --> FORMA_CARD["Tarjeta compacta · captura izquierda + diagonal naranja derecha + F cursiva"]
+  FORMA --> FORMA_EXPAND["Modal de viewport completo · bloquea scroll de la landing"]
+  FORMA_EXPAND --> FORMA_HEADER["Descripción + servicios + enlace + Cerrar"]
+  FORMA_EXPAND --> FORMA_EMBED["Iframe lazy de formalibre.mx · desktop y móvil"]
+  FORMA_EXPAND --> FORMA_EXIT["Salida · botón Cerrar o Escape"]
+  FORMA --> FORMA_ASSET["public/projects/forma-libre/cover.webp"]
+  FORMA --> FORMA_ANALYTICS["Vercel Analytics · abrir / cerrar / visitar"]
 
   NAV --> THEME["Botón único · sol / luna"]
   THEME --> AUTO["Automático · prefers-color-scheme"]
@@ -65,6 +76,13 @@ flowchart TD
   LEGACY_DETECT --> LEGACY
 
   BRAND --> ISO["Isotipo elegido · Pixel"]
+  BRAND --> CARDS["Tarjetas de presentación · exploración"]
+  CARDS --> CARD_1["01 · Pixel Mediterránea"]
+  CARDS --> CARD_2["02 · Neón Nocturno"]
+  CARDS --> CARD_3["03 · Editorial Cítrica"]
+  CARDS --> CARD_4["04 · Modular Azul"]
+  CARDS --> CARD_QR["QR · https://www.pomelo404.com"]
+  CARDS --> CARD_STATUS["Estado · pendiente de selección"]
   ISO --> SIGNATURE["Firma de correo HTML"]
   SIGNATURE --> ISO_PNG["pomelo404-pixel-iso.png · 96×96"]
   SIGNATURE --> EMAIL_DATA["hola@pomelo404.com · sitio · CDMX"]
@@ -75,7 +93,7 @@ flowchart TD
   META --> SCHEMA["JSON-LD · ProfessionalService"]
   META --> ROBOTS["Robots + canonical"]
 
-  SOURCE["Fuente de verdad · master 9443c7c + carrusel"] --> PAGE
+  SOURCE["Fuente de verdad · master 9443c7c + carrusel + Forma Libre"] --> PAGE
   SOURCE --> CSS
   SOURCE --> REVIEWS_VIEW
   SOURCE --> REVIEWS_DATA
@@ -87,6 +105,9 @@ flowchart TD
 - `app/page.tsx`: conserva la composición actual e integra `ReviewsCarousel`.
 - `components/ReviewsCarousel.tsx`: interacción, autoplay, controles, swipe y accesibilidad.
 - `data/reviews.ts`: ocho testimonios provisionales separados de la vista.
+- `components/ProjectShowcase.tsx`: primer caso real expandible, preview responsive y analítica.
+- `data/projects.ts`: contenido y alcance de Forma Libre, además de los placeholders restantes.
+- `public/projects/forma-libre/cover.webp`: imagen de la mitad fotográfica de la tarjeta y fallback futuro.
 - `app/globals.css`: estilos del carrusel para 3, 2 y 1 tarjetas visibles según el ancho.
 - `app/globals.css`: secciones comentadas, colores derivados sin `color-mix()`, controles Firefox y fallbacks progresivos.
 - `README-COMPATIBILITY.md`: niveles de soporte, límites de Next.js 16 y protocolo de prueba entre navegadores.
@@ -115,10 +136,15 @@ flowchart TD
 17. La compatibilidad con IE10/11 es únicamente visual: Next.js 16 no garantiza hidratación ni interacción allí.
 18. `/legacy` no depende del bundle de React; su JavaScript debe conservar sintaxis ES5.
 19. El número de WhatsApp en la versión completa y legacy debe mantenerse sincronizado.
+20. Ninguna propuesta de tarjeta es oficial hasta que el usuario elija una dirección; todas mantienen el QR hacia el dominio canónico.
+21. Forma Libre conserva siempre un enlace externo aunque el iframe funcione; el sitio remoto puede cambiar sus políticas de embebido.
+22. El iframe de Forma Libre se monta al abrir el modal y ocupa todo el espacio disponible bajo la descripción, tanto en escritorio como en móvil.
+23. `layout.tsx`, `package.json` y `pnpm-lock.yaml` gestionan Analytics/Speed Insights por separado y no se sobrescriben desde este módulo.
+24. El modal congela la posición de la landing con `body: fixed`, usa foco con `preventScroll` y restaura el punto exacto al cerrar; `Escape` también devuelve el foco a la tarjeta.
 
 ## Próximos pasos pendientes
 
-- Reemplazar proyectos y reviews de ejemplo por contenido real autorizado.
+- Reemplazar Faro, Nido y las reviews de ejemplo por contenido real autorizado.
 - Publicar el metadata corregido con canonical `https://www.pomelo404.com` y una sola imagen `og-pomelo404-v2.png`.
 - Imágenes OG actualizadas para mostrar `www.pomelo404.com`.
 - Confirmar que `pomelo404.com` redirija de forma permanente a `www.pomelo404.com`.
@@ -126,3 +152,4 @@ flowchart TD
 - Añadir analítica para cotizador, WhatsApp y contacto.
 - Verificar visualmente el marquee en iPhone y en anchos de 320, 390, 620 y 1440 px.
 - Comparar capturas en Firefox y Samsung Internet con el mismo tema y brillo antes de ajustar nuevamente la paleta.
+- Elegir una dirección de tarjeta y preparar el arte final con sangrado, CMYK y especificaciones de imprenta.
