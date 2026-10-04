@@ -107,7 +107,6 @@ export default function ReviewsCarousel() {
             <em>Sitios con pulso.</em>
           </h2>
         </div>
-        <p className="reviews-placeholder">Testimonios de muestra</p>
       </div>
 
       <div

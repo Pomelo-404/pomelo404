@@ -14,8 +14,9 @@ function PlaceholderProject({
   index: number;
 }) {
   return (
-    <article className={`project-card ${project.tone}`}>
+    <article className={`project-card ${project.tone}${project.image ? " has-image" : ""}`}>
       <div className="project-visual">
+        {project.image && <><Image className="project-placeholder-image" src={project.image} alt={project.imageAlt ?? ""} fill sizes="(max-width: 900px) calc(100vw - 40px), calc(50vw - 48px)" /><span className="project-placeholder-tint" aria-hidden="true" /></>}
         <div className="project-browser">
           <i />
           <i />

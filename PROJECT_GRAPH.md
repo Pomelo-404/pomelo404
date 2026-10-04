@@ -19,8 +19,9 @@ flowchart TD
 
   PAGE --> NAV["Nav + menú móvil"]
   PAGE --> HERO["Hero"]
+  HERO --> HERO_3D["components/HeroPomelo3D.tsx · WebGL procedural"]
   PAGE --> MARQUEE["Marquee responsive"]
-  PAGE --> PROJECTS["Proyectos · Forma Libre / Faro / Nido"]
+  PAGE --> PROJECTS["Proyectos · Forma Libre / Vision Planet / Charrería"]
   PAGE --> REVIEWS["Reviews"]
   PAGE --> CONTACT["Contacto"]
   PAGE --> QUOTE_VIEW["components/QuoteCalculator.tsx"]
@@ -35,6 +36,7 @@ flowchart TD
   FORMA_EXPAND --> FORMA_EXIT["Salida · botón Cerrar o Escape"]
   FORMA --> FORMA_ASSET["cover.webp · HD 1780×1080 · WebP · loading eager"]
   FORMA --> FORMA_ANALYTICS["Vercel Analytics · abrir / cerrar / visitar"]
+  PROJECT_DATA --> PENDING_VISUALS["Vision Planet + Charrería · visuales editoriales"]
 
   NAV --> THEME["Botón único · sol / luna"]
   NAV --> MOBILE_CLOSE["Menú móvil · cierra con enlace, clic exterior o Escape"]
@@ -120,6 +122,8 @@ flowchart TD
 - `next.config.ts`: expone el HTML estático mediante la ruta limpia `/legacy`.
 
 ## Contratos que no deben romperse
+
+0. El hero usa un pomelo WebGL procedural liso, con giro aleatorio suavizado, respuesta al cursor y arrastre manual.
 
 1. No cambiar los hexadecimales de la paleta Mediterránea en `:root` sin una petición explícita.
 2. Sin `data-theme`, el sitio sigue `prefers-color-scheme`.

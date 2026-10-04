@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import QuoteCalculator from "@/components/QuoteCalculator";
+import HeroPomelo3D from "@/components/HeroPomelo3D";
 import Iso from "@/components/Iso";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import ProjectShowcase from "@/components/ProjectShowcase";
@@ -203,9 +204,7 @@ export default function Home() {
           <div className="orbit orbit-two">
             <i />
           </div>
-          <div className="fruit">
-            <span className="fruit-core">404</span>
-          </div>
+          <HeroPomelo3D />
           <div className="spark spark-one">✦</div>
           <div className="spark spark-two">✦</div>
           <div className="mini-window">
@@ -214,6 +213,7 @@ export default function Home() {
             <span />
             <b>idea → web</b>
           </div>
+          <div className="hero-satellite"><i /></div>
         </div>
         <div className="hero-proof">
           <b>Strategy → Design → Next.js</b>

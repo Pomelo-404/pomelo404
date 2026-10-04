@@ -8,6 +8,8 @@ export type Project = {
   href?: string;
   cover?: string;
   coverAlt?: string;
+  image?: string;
+  imageAlt?: string;
   services?: string[];
   featured?: boolean;
 };
@@ -33,6 +35,8 @@ export const projects: Project[] = [
     copy: "Catalogo de lentes",
     tone: "blue",
     mark: "✦",
+    image: "/projects/vision-planet.png",
+    imageAlt: "Composición editorial azul, lima y naranja",
   },
   {
     slug: "Charrería",
@@ -41,5 +45,7 @@ export const projects: Project[] = [
     copy: "Piezas históricas.",
     tone: "lime",
     mark: "n/",
+    image: "/projects/charreria.png",
+    imageAlt: "Interior editorial cálido y minimalista",
   },
 ];
