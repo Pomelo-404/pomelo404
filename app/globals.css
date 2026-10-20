@@ -2509,3 +2509,17 @@ html[data-theme="dark"] .nav-cta span {
     margin-top: 72px;
   }
 }
+
+.hero-pomelo-image-fallback {
+  position: absolute;
+  z-index: 1;
+  width: 76%;
+  height: 76%;
+  left: 12%;
+  top: 12%;
+  animation: fruit-float 5s ease-in-out infinite;
+}
+
+.hero-pomelo-image-fallback img {
+  object-fit: contain;
+}
