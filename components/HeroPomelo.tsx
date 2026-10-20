@@ -8,7 +8,7 @@ function PomeloFallback() {
   return (
     <div className="hero-pomelo-image-fallback" aria-hidden="true">
       <Image
-        src="/hero/pomelo-3d.png"
+        src="/pomelo-3d.png"
         alt=""
         fill
         priority
