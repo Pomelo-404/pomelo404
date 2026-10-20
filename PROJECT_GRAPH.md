@@ -19,7 +19,8 @@ flowchart TD
 
   PAGE --> NAV["Nav + menú móvil"]
   PAGE --> HERO["Hero"]
-  HERO --> HERO_3D["components/HeroPomelo3D.tsx · WebGL procedural"]
+  HERO --> HERO_FALLBACK["components/HeroPomelo.tsx · detección WebGL + fallback"]
+  HERO_FALLBACK --> HERO_3D["components/HeroPomelo3D.tsx · WebGL procedural"]
   PAGE --> MARQUEE["Marquee responsive"]
   PAGE --> PROJECTS["Proyectos · Forma Libre / Vision Planet / Charrería"]
   PAGE --> REVIEWS["Reviews"]

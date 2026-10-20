@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import QuoteCalculator from "@/components/QuoteCalculator";
-import HeroPomelo3D from "@/components/HeroPomelo3D";
+import HeroPomelo from "@/components/HeroPomelo";
 import Iso from "@/components/Iso";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import ProjectShowcase from "@/components/ProjectShowcase";
@@ -204,7 +204,7 @@ export default function Home() {
           <div className="orbit orbit-two">
             <i />
           </div>
-          <HeroPomelo3D />
+          <HeroPomelo />
           <div className="spark spark-one">✦</div>
           <div className="spark spark-two">✦</div>
           <div className="mini-window">
