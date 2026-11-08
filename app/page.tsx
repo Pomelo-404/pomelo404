@@ -8,6 +8,12 @@ import Iso from "@/components/Iso";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import ProjectShowcase from "@/components/ProjectShowcase";
 
+/**
+ * Interruptor temporal: cambia a true cuando haya testimonios reales aprobados.
+ * Conserva el carrusel y sus datos listos para volver a publicarlos.
+ */
+const SHOW_REVIEWS = false;
+
 const desktopMarqueeItems = [
   "Diseño con intención",
   "Desarrollo Next.js",
@@ -161,9 +167,11 @@ export default function Home() {
           <a href="#proyectos" onClick={() => setMenuOpen(false)}>
             Proyectos
           </a>
-          <a href="#reviews" onClick={() => setMenuOpen(false)}>
-            Reviews
-          </a>
+          {SHOW_REVIEWS && (
+            <a href="#reviews" onClick={() => setMenuOpen(false)}>
+              Reviews
+            </a>
+          )}
           <a
             href="#cotizador"
             className="nav-cta"
@@ -247,7 +255,7 @@ export default function Home() {
 
       <QuoteCalculator key="quote-default-landing-1" />
 
-      <ReviewsCarousel />
+      {SHOW_REVIEWS && <ReviewsCarousel />}
 
       <section id="contacto" className="contact section-shell">
         <div className="contact-art" aria-hidden="true">
@@ -255,7 +263,7 @@ export default function Home() {
           <span>¡Di hola!</span>
         </div>
         <div className="contact-copy">
-          <p className="section-index">04 / Contacto</p>
+          <p className="section-index">{SHOW_REVIEWS ? "04" : "03"} / Contacto</p>
           <h2>
             ¿Traes una
             <br />

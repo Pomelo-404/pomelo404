@@ -1684,6 +1684,32 @@ html[data-theme="dark"] .nav-cta span {
   color: var(--ink);
 }
 
+/* WhatsApp conserva su verde de marca, sin depender del tema activo. */
+.button-whatsapp {
+  background: #25d366;
+  color: #092d18;
+}
+.button-whatsapp span {
+  background: #128c7e;
+  color: #fff;
+}
+html[data-theme="dark"] .button-whatsapp,
+html:not([data-theme]) .button-whatsapp {
+  background: #25d366;
+  color: #092d18;
+}
+html[data-theme="dark"] .button-whatsapp span,
+html:not([data-theme]) .button-whatsapp span {
+  background: #128c7e;
+  color: #fff;
+}
+.whatsapp-icon {
+  width: 19px;
+  height: 19px;
+  display: block;
+  fill: currentColor;
+}
+
 /* Las mismas correcciones cuando el modo oscuro viene del sistema */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .check-option.selected {

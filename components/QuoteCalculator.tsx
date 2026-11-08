@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import ArrowIcon from "@/components/ArrowIcon";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { ADD_ONS, PRICING_SETTINGS, PROJECT_TYPES } from "@/data/pricing";
 import { useQuote } from "@/hooks/useQuote";
 import { formatMoney } from "@/lib/quotation";
@@ -172,14 +172,14 @@ export default function QuoteCalculator() {
             <li>Deploy en Vercel</li>
           </ul>
           <a
-            className="button button-light"
+            className="button button-light button-whatsapp"
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Enviar esta cotización por WhatsApp"
           >
-            Enviar por WhatsApp{" "}
-            <span aria-hidden="true"><ArrowIcon direction="up-right" /></span>
+            Enviar por WhatsApp
+            <span aria-hidden="true"><WhatsAppIcon /></span>
           </a>
           <small>
             * Estimación orientativa. Alcance y precio final se confirman en
