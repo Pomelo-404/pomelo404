@@ -172,6 +172,15 @@ export default function Home() {
               Reviews
             </a>
           )}
+          <a href="#cotizador" onClick={() => setMenuOpen(false)}>
+            Cotizador
+          </a>
+          <a href="#alcance" onClick={() => setMenuOpen(false)}>
+            Qué incluye
+          </a>
+          <a href="#contacto" onClick={() => setMenuOpen(false)}>
+            Contacto
+          </a>
           <a
             href="#cotizador"
             className="nav-cta"
@@ -256,7 +265,7 @@ export default function Home() {
       <QuoteCalculator key="quote-default-landing-1" />
 
       {/* Alcance visible: los extras del cotizador se explican antes del contacto. */}
-      <section className="quote-inclusions section-shell" aria-labelledby="inclusions-title">
+      <section id="alcance" className="quote-inclusions section-shell" aria-labelledby="inclusions-title">
         <div className="quote-inclusions-intro">
           <p className="section-index">03 / Qué incluye</p>
           <h2 id="inclusions-title">
