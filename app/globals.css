@@ -1416,6 +1416,15 @@ html[data-theme="dark"] .quote-result li::before {
   background: var(--lime);
   color: var(--ink);
 }
+/* En oscuro --ink es claro; el verde necesita tinta fija para conservar contraste. */
+html[data-theme="dark"] .inclusion-grid article:hover {
+  color: #151515;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .inclusion-grid article:hover {
+    color: #151515;
+  }
+}
 .inclusion-grid h3 {
   margin: 38px 0 8px;
   font-size: 17px;
