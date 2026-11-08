@@ -255,6 +255,71 @@ export default function Home() {
 
       <QuoteCalculator key="quote-default-landing-1" />
 
+      {/* Alcance visible: los extras del cotizador se explican antes del contacto. */}
+      <section className="quote-inclusions section-shell" aria-labelledby="inclusions-title">
+        <div className="quote-inclusions-intro">
+          <p className="section-index">03 / Qué incluye</p>
+          <h2 id="inclusions-title">
+            Claridad desde
+            <br />
+            <em>el primer click.</em>
+          </h2>
+          <p>
+            Cada propuesta se ajusta a tu proyecto. El cotizador marca el
+            punto de partida; aquí está lo que construimos juntos.
+          </p>
+        </div>
+
+        <div className="scope-card">
+          <p>Alcance base</p>
+          <ul>
+            <li>Dirección de proyecto y una ruta de trabajo clara.</li>
+            <li>Diseño responsive pensado para móvil y escritorio.</li>
+            <li>Desarrollo en Next.js, pruebas y publicación en Vercel.</li>
+            <li>Una ronda de ajustes para cerrar detalles antes de lanzar.</li>
+          </ul>
+          <small>
+            El número de páginas y cualquier función especial se confirman en
+            la propuesta final.
+          </small>
+        </div>
+
+        <div className="inclusion-grid">
+          <article>
+            <span>01</span>
+            <h3>Identidad visual</h3>
+            <p>
+              Un sistema visual para que el sitio se sienta propio: dirección,
+              color, tipografía y aplicaciones digitales esenciales.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Copywriting</h3>
+            <p>
+              Mensajes, jerarquía y llamadas a la acción que expliquen tu
+              valor sin sonar como todo el mundo.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Motion avanzado</h3>
+            <p>
+              Movimiento a medida, transiciones y microinteracciones que dan
+              ritmo al sitio sin estorbar la experiencia.
+            </p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>CMS autogestionable</h3>
+            <p>
+              Un panel claro para actualizar contenido, proyectos o noticias
+              sin depender de nosotros cada vez.
+            </p>
+          </article>
+        </div>
+      </section>
+
       {SHOW_REVIEWS && <ReviewsCarousel />}
 
       <section id="contacto" className="contact section-shell">
@@ -263,7 +328,7 @@ export default function Home() {
           <span>¡Di hola!</span>
         </div>
         <div className="contact-copy">
-          <p className="section-index">{SHOW_REVIEWS ? "04" : "03"} / Contacto</p>
+          <p className="section-index">{SHOW_REVIEWS ? "05" : "04"} / Contacto</p>
           <h2>
             ¿Traes una
             <br />
