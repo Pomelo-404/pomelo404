@@ -274,9 +274,10 @@ export default function Home() {
           <p>Alcance base</p>
           <ul>
             <li>Dirección de proyecto y una ruta de trabajo clara.</li>
-            <li>Diseño responsive pensado para móvil y escritorio.</li>
-            <li>Desarrollo en Next.js, pruebas y publicación en Vercel.</li>
-            <li>Una ronda de ajustes para cerrar detalles antes de lanzar.</li>
+            <li>Arquitectura de información y diseño responsive para móvil y escritorio.</li>
+            <li>Desarrollo en Next.js, pruebas funcionales y publicación en Vercel.</li>
+            <li>Una ronda de ajustes para cerrar contenido, detalles visuales y comportamiento.</li>
+            <li>Entrega organizada para que el sitio pueda crecer contigo después del lanzamiento.</li>
           </ul>
           <small>
             El número de páginas y cualquier función especial se confirman en
@@ -290,7 +291,8 @@ export default function Home() {
             <h3>Identidad visual</h3>
             <p>
               Un sistema visual para que el sitio se sienta propio: dirección,
-              color, tipografía y aplicaciones digitales esenciales.
+              color, tipografía y aplicaciones digitales esenciales. Definimos
+              una base consistente para que cada pantalla hable el mismo idioma.
             </p>
           </article>
           <article>
@@ -298,7 +300,8 @@ export default function Home() {
             <h3>Copywriting</h3>
             <p>
               Mensajes, jerarquía y llamadas a la acción que expliquen tu
-              valor sin sonar como todo el mundo.
+              valor sin sonar como todo el mundo. Incluye una estructura de
+              contenido clara para que las personas encuentren lo importante.
             </p>
           </article>
           <article>
@@ -306,7 +309,8 @@ export default function Home() {
             <h3>Motion avanzado</h3>
             <p>
               Movimiento a medida, transiciones y microinteracciones que dan
-              ritmo al sitio sin estorbar la experiencia.
+              ritmo al sitio sin estorbar la experiencia. Diseñamos cada gesto
+              para acompañar la navegación, no para distraer.
             </p>
           </article>
           <article>
@@ -314,11 +318,17 @@ export default function Home() {
             <h3>CMS autogestionable</h3>
             <p>
               Un panel claro para actualizar contenido, proyectos o noticias
-              sin depender de nosotros cada vez.
+              sin depender de nosotros cada vez. Dejamos una estructura fácil
+              de usar y una guía breve para que tu equipo tenga autonomía.
             </p>
           </article>
         </div>
       </section>
+      <div className="quote-inclusions-divider section-shell" aria-hidden="true">
+        <span />
+        <b>alcance claro · propuesta a medida</b>
+        <span />
+      </div>
 
       {SHOW_REVIEWS && <ReviewsCarousel />}
 

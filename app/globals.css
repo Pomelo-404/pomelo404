@@ -924,9 +924,18 @@ input {
   cursor: pointer;
 }
 .project-expanded-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   background: var(--ink);
   color: var(--paper);
   text-decoration: none;
+}
+.project-expanded-actions a .arrow-icon {
+  flex: 0 0 auto;
+  width: 1.1em;
+  height: 1.1em;
 }
 .project-expanded-actions a:hover,
 .project-expanded-actions button:hover {
@@ -1340,6 +1349,8 @@ html[data-theme="dark"] .quote-result li::before {
   letter-spacing: -0.065em;
 }
 .quote-inclusions-intro h2 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
   color: var(--orange);
 }
 .quote-inclusions-intro > p:last-child {
@@ -1415,6 +1426,24 @@ html[data-theme="dark"] .quote-result li::before {
   font-size: 11px;
   line-height: 1.5;
 }
+.quote-inclusions-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 138px;
+  color: var(--ink-62);
+}
+.quote-inclusions-divider span {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.quote-inclusions-divider b {
+  font: 600 8px var(--font-geist-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 @media (max-width: 900px) {
   .quote-inclusions {
     grid-template-columns: minmax(220px, 0.8fr) minmax(340px, 1.2fr);
@@ -1436,6 +1465,13 @@ html[data-theme="dark"] .quote-result li::before {
   .inclusion-grid article {
     min-height: 170px;
     padding: 20px;
+  }
+  .quote-inclusions-divider {
+    padding-bottom: 86px;
+  }
+  .quote-inclusions-divider b {
+    font-size: 7px;
+    letter-spacing: 0.06em;
   }
 }
 

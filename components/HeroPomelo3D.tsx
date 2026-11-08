@@ -7,7 +7,10 @@ import {
   Color,
   Float32BufferAttribute,
   MathUtils,
+  Shape,
+  ShapeGeometry,
   SphereGeometry,
+  DoubleSide,
   type Group,
 } from "three";
 
@@ -28,12 +31,10 @@ function usePomeloPeel() {
       const z = positions.getZ(index);
       const latitude = Math.atan2(y, Math.sqrt(x * x + z * z));
       const longitude = Math.atan2(z, x);
-      // Dos frecuencias hacen poros finos y una silueta apenas imperfecta.
+      // Los poros cambian la luz, sin deformar la silueta redonda del fruto.
       const pores = Math.sin(longitude * 25 + latitude * 19) * 0.008;
-      const undulation = Math.sin(longitude * 5 - latitude * 7) * 0.018;
-      const scale = 1 + pores + undulation;
 
-      positions.setXYZ(index, x * scale, y * scale, z * scale);
+      positions.setXYZ(index, x, y, z);
 
       const illumination = MathUtils.clamp(0.5 + x * 0.17 + y * 0.09 + pores * 8, 0, 1);
       vertex
@@ -51,9 +52,23 @@ function usePomeloPeel() {
   }, []);
 }
 
+/** Silueta de hoja con punta y base estrecha; evita el aspecto de óvalo. */
+function useLeafGeometry() {
+  return useMemo(() => {
+    const leaf = new Shape();
+    leaf.moveTo(0, 0);
+    leaf.bezierCurveTo(0.22, 0.08, 0.46, 0.42, 0.08, 0.9);
+    leaf.quadraticCurveTo(0.02, 0.98, 0, 1.04);
+    leaf.quadraticCurveTo(-0.06, 0.95, -0.1, 0.87);
+    leaf.bezierCurveTo(-0.46, 0.4, -0.2, 0.08, 0, 0);
+    return new ShapeGeometry(leaf, 28);
+  }, []);
+}
+
 function PomeloModel() {
   const pomelo = useRef<Group>(null);
   const peel = usePomeloPeel();
+  const leaf = useLeafGeometry();
   const target = useRef({ x: 0.08, y: -0.35, z: 0.08, nextChange: 0 });
   const pointer = useThree((state) => state.pointer);
 
@@ -78,18 +93,17 @@ function PomeloModel() {
   return (
     <Float speed={1.35} rotationIntensity={0.12} floatIntensity={0.28}>
       <group ref={pomelo} rotation={[0.08, -0.35, 0.08]}>
-        <mesh geometry={peel} scale={[1, 1, 0.92]}>
+        <mesh geometry={peel}>
           <meshPhysicalMaterial vertexColors roughness={0.48} metalness={0.01} clearcoat={0.12} clearcoatRoughness={0.62} />
         </mesh>
-        {/* Hoja en dos tonos y nervadura: simple, pero más orgánica. */}
-        <group position={[0.28, 1.35, 0.02]} rotation={[0.35, -0.1, -0.78]}>
-          <mesh scale={[0.37, 0.1, 0.72]}>
-            <sphereGeometry args={[1, 32, 32]} />
-            <meshStandardMaterial color="#78bc45" roughness={0.62} />
+        {/* Hoja en silueta, con nervadura central y un giro ligero hacia cámara. */}
+        <group position={[0.24, 1.28, 0.04]} rotation={[0.28, -0.2, -0.72]} scale={[0.7, 0.7, 0.7]}>
+          <mesh geometry={leaf} rotation={[0.12, 0, 0]}>
+            <meshStandardMaterial color="#78bc45" roughness={0.62} side={DoubleSide} />
           </mesh>
-          <mesh position={[0.02, -0.09, 0.15]} scale={[0.19, 0.026, 0.52]}>
-            <sphereGeometry args={[1, 24, 24]} />
-            <meshStandardMaterial color="#b7e073" roughness={0.7} />
+          <mesh position={[0, 0.46, 0.025]} rotation={[0, 0, 0]}>
+            <cylinderGeometry args={[0.018, 0.026, 0.78, 8]} />
+            <meshStandardMaterial color="#c1e581" roughness={0.7} />
           </mesh>
         </group>
         <mesh position={[0.04, 1.31, 0]} rotation={[0.18, 0, -0.08]}>
