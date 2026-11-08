@@ -2,6 +2,22 @@ export type ProjectType = "landing" | "website" | "commerce";
 export type AddOn = "brand" | "copy" | "motion" | "cms";
 export type Timeline = "normal" | "express";
 
+/**
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║ AJUSTES DE PRECIOS · editar únicamente estos valores en MXN          ║
+ * ║ El cotizador, WhatsApp y el rango estimado los consumen automáticamente.║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ */
+export const PRICING_SETTINGS = {
+  pages: { min: 1, max: 20, rounding: 1_000 },
+  landing: { base: 6_500, extraPage: 3_500, minimumWithAdditionalScope: 8_000 },
+  website: { base: 28_000, extraPage: 3_500 },
+  commerce: { base: 45_000, extraPage: 4_500 },
+  addOns: { brand: 14_000, copy: 6_500, motion: 7_500, cms: 9_000 },
+  expressMultiplier: 1.25,
+  estimateRangePercent: 0.1,
+} as const;
+
 export const PROJECT_TYPES: Array<{
   id: ProjectType;
   label: string;
@@ -13,23 +29,23 @@ export const PROJECT_TYPES: Array<{
     id: "landing",
     label: "Landing page",
     note: "Una idea, una acción",
-    base: 8000,
-    // Ancla la curva en $8,000 (1 página) y $91,000 (20 páginas).
-    pricePerExtraPage: (91_000 - 8_000) / 19,
+    // $6,500 solo aplica a una landing de una página sin adicionales.
+    base: PRICING_SETTINGS.landing.base,
+    pricePerExtraPage: PRICING_SETTINGS.landing.extraPage,
   },
   {
     id: "website",
     label: "Sitio de marca",
     note: "Historia, servicios y leads",
-    base: 48000,
-    pricePerExtraPage: 3500,
+    base: PRICING_SETTINGS.website.base,
+    pricePerExtraPage: PRICING_SETTINGS.website.extraPage,
   },
   {
     id: "commerce",
     label: "E-commerce",
     note: "Catálogo y checkout",
-    base: 78000,
-    pricePerExtraPage: 3500,
+    base: PRICING_SETTINGS.commerce.base,
+    pricePerExtraPage: PRICING_SETTINGS.commerce.extraPage,
   },
 ];
 
@@ -38,10 +54,10 @@ export const ADD_ONS: Array<{
   label: string;
   price: number;
 }> = [
-  { id: "brand", label: "Identidad visual", price: 18000 },
-  { id: "copy", label: "Copywriting", price: 9000 },
-  { id: "motion", label: "Motion avanzado", price: 12000 },
-  { id: "cms", label: "CMS autogestionable", price: 10000 },
+  { id: "brand", label: "Identidad visual", price: PRICING_SETTINGS.addOns.brand },
+  { id: "copy", label: "Copywriting", price: PRICING_SETTINGS.addOns.copy },
+  { id: "motion", label: "Motion avanzado", price: PRICING_SETTINGS.addOns.motion },
+  { id: "cms", label: "CMS autogestionable", price: PRICING_SETTINGS.addOns.cms },
 ];
 
-export const EXPRESS_MULTIPLIER = 1.2;
+export const EXPRESS_MULTIPLIER = PRICING_SETTINGS.expressMultiplier;

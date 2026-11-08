@@ -1,6 +1,7 @@
 import {
   ADD_ONS,
   EXPRESS_MULTIPLIER,
+  PRICING_SETTINGS,
   PROJECT_TYPES,
   type AddOn,
   type ProjectType,
@@ -30,6 +31,7 @@ export function calculateEstimate({
   timeline,
   selectedAddOns,
 }: QuoteInput) {
+  // La lógica toma sus montos desde data/pricing.ts; no dejar precios fijos aquí.
   const project = PROJECT_TYPES.find((type) => type.id === projectType);
   const base = project?.base ?? 0;
   const pagesCost =
@@ -37,14 +39,22 @@ export function calculateEstimate({
   const extrasCost = ADD_ONS.filter((item) =>
     selectedAddOns.includes(item.id),
   ).reduce((sum, item) => sum + item.price, 0);
+  const hasAdditionalScope = pages > PRICING_SETTINGS.pages.min || selectedAddOns.length > 0;
+  const landingMinimum = projectType === "landing" && hasAdditionalScope
+    ? PRICING_SETTINGS.landing.minimumWithAdditionalScope
+    : 0;
   const multiplier = timeline === "express" ? EXPRESS_MULTIPLIER : 1;
 
+  // Una landing sola puede iniciar en $6,500; con cualquier ampliación parte de $8,000.
+  const subtotal = Math.max(base + pagesCost + extrasCost, landingMinimum);
   return (
-    Math.round(((base + pagesCost + extrasCost) * multiplier) / 1000) * 1000
+    Math.round((subtotal * multiplier) / PRICING_SETTINGS.pages.rounding) *
+    PRICING_SETTINGS.pages.rounding
   );
 }
 
 export function createWhatsAppUrl(input: QuoteInput, estimate: number) {
+  // Reutiliza las etiquetas de data/pricing.ts para que el mensaje refleje la UI.
   const project =
     PROJECT_TYPES.find((item) => item.id === input.projectType)?.label ??
     "Sitio web";
@@ -64,7 +74,7 @@ export function createWhatsAppUrl(input: QuoteInput, estimate: number) {
     `Extras: ${extras}`,
     `Entrega: ${input.timeline === "express" ? "Express" : "6–8 semanas"}`,
     `Estimado: ${formatMoney(estimate)} MXN + IVA`,
-    `Rango probable: ${formatMoney(estimate * 0.9)} — ${formatMoney(estimate * 1.1)}`,
+    `Rango probable: ${formatMoney(estimate * (1 - PRICING_SETTINGS.estimateRangePercent))} — ${formatMoney(estimate * (1 + PRICING_SETTINGS.estimateRangePercent))}`,
     "",
     "Me gustaría conocer los siguientes pasos.",
   ]

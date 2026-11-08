@@ -1,10 +1,12 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { ADD_ONS, PROJECT_TYPES } from "@/data/pricing";
+import ArrowIcon from "@/components/ArrowIcon";
+import { ADD_ONS, PRICING_SETTINGS, PROJECT_TYPES } from "@/data/pricing";
 import { useQuote } from "@/hooks/useQuote";
 import { formatMoney } from "@/lib/quotation";
 
+/** Presenta el cotizador; todos los precios y límites viven en data/pricing.ts. */
 export default function QuoteCalculator() {
   const {
     projectName,
@@ -94,18 +96,18 @@ export default function QuoteCalculator() {
               id="pages"
               className="range"
               type="range"
-              min="1"
-              max="20"
+              min={PRICING_SETTINGS.pages.min}
+              max={PRICING_SETTINGS.pages.max}
               value={pages}
               onChange={(event) => setPages(Number(event.target.value))}
               style={
-                { "--range": `${((pages - 1) / 19) * 100}%` } as CSSProperties
+                { "--range": `${((pages - PRICING_SETTINGS.pages.min) / (PRICING_SETTINGS.pages.max - PRICING_SETTINGS.pages.min)) * 100}%` } as CSSProperties
               }
             />
             <div className="range-labels">
-              <span>1</span>
+              <span>{PRICING_SETTINGS.pages.min}</span>
               <span>10</span>
-              <span>20</span>
+              <span>{PRICING_SETTINGS.pages.max}</span>
             </div>
           </fieldset>
           <fieldset>
@@ -147,7 +149,7 @@ export default function QuoteCalculator() {
                   className={timeline === "express" ? "active" : ""}
                   onClick={() => setTimeline("express")}
                 >
-                  Express +20%
+                  Express +{Math.round((PRICING_SETTINGS.expressMultiplier - 1) * 100)}%
                 </button>
               </div>
             </div>
@@ -160,7 +162,7 @@ export default function QuoteCalculator() {
           <div className="estimate-range">
             <span>Rango probable</span>
             <b>
-              {formatMoney(estimate * 0.9)} — {formatMoney(estimate * 1.1)}
+              {formatMoney(estimate * (1 - PRICING_SETTINGS.estimateRangePercent))} — {formatMoney(estimate * (1 + PRICING_SETTINGS.estimateRangePercent))}
             </b>
           </div>
           <ul>
@@ -177,9 +179,7 @@ export default function QuoteCalculator() {
             aria-label="Enviar esta cotización por WhatsApp"
           >
             Enviar por WhatsApp{" "}
-            <span className="arrow" aria-hidden="true">
-              &#8599;&#65038;
-            </span>
+            <span aria-hidden="true"><ArrowIcon direction="up-right" /></span>
           </a>
           <small>
             * Estimación orientativa. Alcance y precio final se confirman en

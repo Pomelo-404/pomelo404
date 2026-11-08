@@ -19,7 +19,7 @@ flowchart TD
 
   PAGE --> NAV["Nav + menú móvil"]
   PAGE --> HERO["Hero"]
-  HERO --> HERO_FALLBACK["components/HeroPomelo.tsx · detección WebGL + fallback"]
+  HERO --> HERO_FALLBACK["components/HeroPomelo.tsx · detección WebGL + fallback PNG"]
   HERO_FALLBACK --> HERO_3D["components/HeroPomelo3D.tsx · WebGL procedural"]
   PAGE --> MARQUEE["Marquee responsive"]
   PAGE --> PROJECTS["Proyectos · Forma Libre / Vision Planet / Charrería"]
@@ -60,7 +60,7 @@ flowchart TD
   QUOTE_VIEW --> HOOK["hooks/useQuote.ts · estado derivado"]
   HOOK --> PRICING["data/pricing.ts · tipos y precios"]
   HOOK --> QUOTE_DEFAULT["Default · Landing / 1 página / sin extras / normal"]
-  PRICING --> LANDING_CURVE["Landing sin extras · 1 pág $8k → 20 págs $91k"]
+  PRICING --> LANDING_CURVE["Landing sin extras · 1 pág $6.5k · mínimo $8k con ampliaciones"]
   PRICING --> OTHER_CURVES["Marca / E-commerce · conservan $3,500 por página extra"]
   HOOK --> LOGIC["lib/quotation.ts · cálculo y mensaje"]
   LOGIC --> WA["WhatsApp · wa.me"]

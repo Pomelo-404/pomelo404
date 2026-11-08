@@ -27,6 +27,7 @@ function PlaybackIcon({ paused }: { paused: boolean }) {
   );
 }
 
+/** Carrusel accesible: se pausa al interactuar y respeta reduced-motion. */
 export default function ReviewsCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);

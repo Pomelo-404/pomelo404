@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ArrowIcon from "@/components/ArrowIcon";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import HeroPomelo from "@/components/HeroPomelo";
 import Iso from "@/components/Iso";
@@ -168,7 +169,7 @@ export default function Home() {
             className="nav-cta"
             onClick={() => setMenuOpen(false)}
           >
-            Cotiza ahora <span>↗</span>
+            Cotiza ahora <span><ArrowIcon direction="up-right" /></span>
           </a>
           <div className="theme-controls">
             <ThemeToggle />
@@ -190,10 +191,10 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#cotizador">
-              Cotiza en 2 min <span>↘</span>
+              Cotiza en 2 min <span><ArrowIcon direction="down-right" /></span>
             </a>
             <a className="text-link" href="#proyectos">
-              Ver proyectos <span>↓</span>
+              Ver proyectos <span><ArrowIcon direction="down" /></span>
             </a>
           </div>
         </div>
@@ -211,12 +212,12 @@ export default function Home() {
             <span />
             <span />
             <span />
-            <b>idea → web</b>
+            <b>idea / web</b>
           </div>
           <div className="hero-satellite"><i /></div>
         </div>
         <div className="hero-proof">
-          <b>Strategy → Design → Next.js</b>
+          <b>Strategy · Design · Next.js</b>
           <span>Diseñado para convertir, construido para durar.</span>
         </div>
       </section>
@@ -265,7 +266,7 @@ export default function Home() {
             1–2 días hábiles.
           </p>
           <a href="mailto:hola@pomelo404.com" className="contact-email">
-            hola@pomelo404.com <span>↗</span>
+            hola@pomelo404.com <span><ArrowIcon direction="up-right" /></span>
           </a>
         </div>
       </section>
@@ -279,7 +280,7 @@ export default function Home() {
         <div>
           <span>© 2026</span>
           <a href="/legacy/">Versión básica</a>
-          <a href="#inicio">Volver arriba ↑</a>
+          <a href="#inicio">Volver arriba <ArrowIcon direction="up" /></a>
         </div>
       </footer>
     </main>

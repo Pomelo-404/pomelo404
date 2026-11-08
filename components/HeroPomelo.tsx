@@ -5,17 +5,7 @@ import Image from "next/image";
 import { Component, type ReactNode, useEffect, useState } from "react";
 
 function PomeloFallback() {
-  return (
-    <div className="hero-pomelo-image-fallback" aria-hidden="true">
-      <Image
-        src="/pomelo-3d.png"
-        alt=""
-        fill
-        priority
-        sizes="(max-width: 900px) 80vw, 40vw"
-      />
-    </div>
-  );
+  return <div className="hero-pomelo-image-fallback" aria-hidden="true"><Image src="/hero/pomelo-3d.png" alt="" fill priority sizes="(max-width: 900px) 80vw, 40vw" /></div>;
 }
 
 const HeroPomelo3D = dynamic(() => import("@/components/HeroPomelo3D"), {
@@ -36,6 +26,7 @@ class WebGLErrorBoundary extends Component<{ children: ReactNode }, { failed: bo
 }
 
 function supportsWebGL() {
+  // No montamos Three.js hasta confirmar que el navegador puede crear un contexto WebGL.
   try {
     const canvas = document.createElement("canvas");
     return Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
@@ -45,6 +36,7 @@ function supportsWebGL() {
 }
 
 export default function HeroPomelo() {
+  // El fallback se renderiza primero para que el hero nunca quede vacío.
   const [canUseWebGL, setCanUseWebGL] = useState(false);
 
   useEffect(() => {

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
+import ArrowIcon from "@/components/ArrowIcon";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { projects, type Project } from "@/data/projects";
@@ -37,6 +38,7 @@ function PlaceholderProject({
   );
 }
 
+/** Tarjeta de portafolio y vista expandida; el contenido editable vive en data/projects.ts. */
 export default function ProjectShowcase() {
   const featured = projects.find((project) => project.featured)!;
   const placeholders = projects.filter((project) => !project.featured);
@@ -130,7 +132,7 @@ export default function ProjectShowcase() {
               <span>pomelo404 / 01</span>
             </div>
             <span className="project-pill">
-              {isExpanded ? "Proyecto abierto" : "Explorar proyecto ↘"}
+              {isExpanded ? "Proyecto abierto" : <><span>Explorar proyecto</span><ArrowIcon direction="down-right" /></>}
             </span>
           </div>
           <div className="project-meta">
@@ -184,7 +186,7 @@ export default function ProjectShowcase() {
                     rel="noopener noreferrer"
                     onClick={trackExternalVisit}
                   >
-                    Abrir sitio <span aria-hidden="true">↗</span>
+                    Abrir sitio <ArrowIcon direction="up-right" />
                   </a>
                   <button ref={closeRef} type="button" onClick={closeProject}>
                     Cerrar <span aria-hidden="true">×</span>
