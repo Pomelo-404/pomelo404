@@ -655,6 +655,9 @@ input {
   margin: 0 0 8px;
   font-size: 15px;
   line-height: 1.55;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
 }
 /* Énfasis de marca dentro del párrafo, independiente de los títulos. */
 .what-we-do-intro .brand-accent {
