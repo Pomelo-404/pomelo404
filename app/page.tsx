@@ -126,7 +126,7 @@ export default function Home() {
         <div className="what-we-do-intro">
           <p className="section-index">01 / Qué hacemos</p>
           <h2 id="what-we-do-title">Empezamos desde cero<br /><em>o desde donde ya estás.</em></h2>
-          <p>pomelo404 es un estudio web independiente en CDMX. Diseñamos y desarrollamos sitios nuevos, sí. Pero también tomamos el que ya tienes —el que se quedó en otra época, carga lento o ya no cuenta bien tu historia— y lo actualizamos, lo adaptamos y lo volvemos a poner a trabajar. No importa si tu web nace hoy o nació hace cinco años: lo que importa es que haga click con quien la visita.</p>
+          <p>pomelo<em>404</em> es un estudio web independiente en CDMX. Diseñamos y desarrollamos sitios nuevos, sí. Pero también tomamos el que ya tienes el que se quedó en otra época, carga lento o ya no cuenta bien tu historia y lo actualizamos, lo adaptamos y lo volvemos a poner a trabajar. No importa si tu web nace hoy o nació hace cinco años: lo que importa es que haga click con quien la visita.</p>
         </div>
         <WhatWeDoCarousel />
         <div className="what-we-do-actions">
