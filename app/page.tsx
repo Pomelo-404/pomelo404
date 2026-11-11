@@ -126,12 +126,12 @@ export default function Home() {
         <div className="what-we-do-intro">
           <p className="section-index">01 / Qué hacemos</p>
           <h2 id="what-we-do-title">Empezamos desde cero<br /><em>o desde donde ya estás.</em></h2>
-          <p>pomelo<em>404</em> es un estudio web independiente en CDMX. Diseñamos y desarrollamos sitios nuevos, sí. Pero también tomamos el que ya tienes el que se quedó en otra época, carga lento o ya no cuenta bien tu historia y lo actualizamos, lo adaptamos y lo volvemos a poner a trabajar. No importa si tu web nace hoy o nació hace cinco años: lo que importa es que haga click con quien la visita.</p>
+          <p>pomelo<em className="brand-accent">404</em> es un estudio web independiente en CDMX. Diseñamos y desarrollamos sitios nuevos, sí. Pero también tomamos el que ya tienes el que se quedó en otra época, carga lento o ya no cuenta bien tu historia y lo actualizamos, lo adaptamos y lo volvemos a poner a trabajar. No importa si tu web nace hoy o nació hace cinco años: lo que importa es que haga click con quien la visita.</p>
         </div>
         <WhatWeDoCarousel />
         <div className="what-we-do-actions">
           <p>¿Tienes un sitio y no sabes si rehacerlo o arreglarlo? Mándanos el link y te decimos qué conviene.</p>
-          <div><a className="text-link" href="#cotizador">Cotizar un rediseño <span><ArrowIcon direction="down-right" /></span></a><WhatsAppButton href={REDESIGN_WHATSAPP_URL}>Escribenos por WhatsApp</WhatsAppButton></div>
+          <div><a className="text-link" href="#cotizador">Cotizar un rediseño <span><ArrowIcon direction="down-right" /></span></a><WhatsAppButton href={REDESIGN_WHATSAPP_URL}>Escribir por WhatsApp</WhatsAppButton></div>
         </div>
       </section>
 
@@ -159,7 +159,7 @@ export default function Home() {
 
       <section id="contacto" className="contact section-shell">
         <div className="contact-art" aria-hidden="true"><div className="contact-fruit">✦</div><span>¡Di hola!</span></div>
-        <div className="contact-copy"><p className="section-index">{SHOW_REVIEWS ? "06" : "05"} / Contacto</p><h2>¿Traes una<br /><em>buena idea?</em></h2><p>Cuéntanos qué quieres lanzar, mejorar o transformar. Si ya tienes sitio, mándanos el link para conocerlo. Respondemos en 1–2 días hábiles.</p><a href="mailto:hola@pomelo404.com" className="contact-email">hola@pomelo404.com <span><ArrowIcon direction="up-right" /></span></a><WhatsAppButton className="contact-whatsapp" href={CONTACT_WHATSAPP_URL}>Escribienos por WhatsApp</WhatsAppButton></div>
+        <div className="contact-copy"><p className="section-index">{SHOW_REVIEWS ? "06" : "05"} / Contacto</p><h2>¿Traes una<br /><em>buena idea?</em></h2><p>Cuéntanos qué quieres lanzar, mejorar o transformar. Si ya tienes sitio, mándanos el link para conocerlo. Respondemos en 1–2 días hábiles.</p><a href="mailto:hola@pomelo404.com" className="contact-email">hola@pomelo404.com <span><ArrowIcon direction="up-right" /></span></a><WhatsAppButton className="contact-whatsapp" href={CONTACT_WHATSAPP_URL}>Escribir por WhatsApp</WhatsAppButton></div>
       </section>
 
       <footer className="site-footer section-shell"><a className="logo" href="#inicio">pomelo<span>404</span><Iso variant="pixel" size={22} /></a><p>Webs frescas, sin partes amargas.</p><div><span>© 2026 pomelo404</span><a href="/legacy/">Versión ligera</a><a href="#inicio">Volver arriba <ArrowIcon direction="up" /></a></div></footer>

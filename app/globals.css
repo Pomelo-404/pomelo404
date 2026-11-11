@@ -656,6 +656,13 @@ input {
   font-size: 15px;
   line-height: 1.55;
 }
+/* Énfasis de marca dentro del párrafo, independiente de los títulos. */
+.what-we-do-intro .brand-accent {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--orange);
+}
 .what-we-do .section-index {
   grid-column: 1 / -1;
 }
