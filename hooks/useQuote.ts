@@ -8,6 +8,7 @@ export function useQuote() {
   // Estado único del cotizador. Los importes se derivan en lugar de guardarse,
   // para evitar que UI, WhatsApp y resumen puedan desincronizarse.
   const [projectName, setProjectName] = useState("");
+  const [websiteUrl, setWebsiteUrl] = useState("");
   const [projectType, setProjectType] = useState<ProjectType>("landing");
   const [pages, setPages] = useState(1);
   const [timeline, setTimeline] = useState<Timeline>("normal");
@@ -15,8 +16,8 @@ export function useQuote() {
 
   // Memoriza el mismo objeto de entrada para ambos cálculos derivados.
   const input = useMemo(
-    () => ({ projectName, projectType, pages, timeline, selectedAddOns }),
-    [pages, projectName, projectType, selectedAddOns, timeline],
+    () => ({ projectName, websiteUrl, projectType, pages, timeline, selectedAddOns }),
+    [pages, projectName, projectType, selectedAddOns, timeline, websiteUrl],
   );
   const estimate = useMemo(() => calculateEstimate(input), [input]);
   const whatsappUrl = useMemo(
@@ -36,6 +37,8 @@ export function useQuote() {
   return {
     projectName,
     setProjectName,
+    websiteUrl,
+    setWebsiteUrl,
     projectType,
     setProjectType,
     pages,

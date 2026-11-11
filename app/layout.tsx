@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 
 const siteUrl = "https://www.pomelo404.com";
 
-const title = "pomelo404 — Diseño y desarrollo web en Next.js";
+const title = "pomelo404 — Diseño, desarrollo y rediseño web · CDMX";
 const description =
-  "Estudio web independiente en CDMX. Diseñamos y desarrollamos sitios rápidos, claros y memorables con estrategia, UX/UI, Next.js y Vercel.";
+  "Estudio web independiente en CDMX. Creamos sitios nuevos y renovamos los que ya existen: rápidos, claros y memorables, con estrategia, UX/UI y Next.js.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -38,7 +38,9 @@ export const metadata: Metadata = {
     "UX/UI",
     "landing pages",
     "e-commerce",
-    "Vercel",
+    "rediseño web",
+    "actualización de sitios web",
+    "migración web",
     "diseño digital",
   ],
   authors: [{ name: "pomelo404", url: siteUrl }],
@@ -78,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/og-pomelo404-v2.png"],
+    images: ["/og-pomelo404-editorial.png"],
   },
   robots: {
     index: true,
@@ -109,7 +111,7 @@ const structuredData = {
   name: "pomelo404",
   url: siteUrl,
   logo: `${siteUrl}/pomelo404-pixel-iso.png`,
-  image: `${siteUrl}/og-pomelo404-v2.png`,
+  image: `${siteUrl}/og-pomelo404-editorial.png`,
   email: "hola@pomelo404.com",
   description,
   address: {

@@ -19,6 +19,7 @@ export const formatMoney = new Intl.NumberFormat("es-MX", {
 
 export type QuoteInput = {
   projectName: string;
+  websiteUrl: string;
   projectType: ProjectType;
   pages: number;
   timeline: Timeline;
@@ -64,17 +65,21 @@ export function createWhatsAppUrl(input: QuoteInput, estimate: number) {
       .join(", ") || "Sin extras";
 
   const projectName = input.projectName.trim();
+  const websiteUrl = input.websiteUrl.trim();
   const message = [
     "¡Hola!",
     "Acabo de completar el cotizador y quiero platicar de mi proyecto.",
     "",
     projectName ? `Nombre: ${projectName}` : null,
     `Proyecto: ${project}`,
+    input.projectType === "redesign" && websiteUrl
+      ? `Sitio actual: ${websiteUrl}`
+      : null,
     `Páginas: ${input.pages}`,
     `Extras: ${extras}`,
     `Entrega: ${input.timeline === "express" ? "Express" : "6–8 semanas"}`,
     `Estimado: ${formatMoney(estimate)} MXN + IVA`,
-    `Rango probable: ${formatMoney(estimate * (1 - PRICING_SETTINGS.estimateRangePercent))} — ${formatMoney(estimate * (1 + PRICING_SETTINGS.estimateRangePercent))}`,
+    `Rango probable: ${formatMoney(estimate * (1 - PRICING_SETTINGS.estimateRangePercent))} – ${formatMoney(estimate * (1 + PRICING_SETTINGS.estimateRangePercent))}`,
     "",
     "Me gustaría conocer los siguientes pasos.",
   ]

@@ -1,4 +1,4 @@
-export type ProjectType = "landing" | "website" | "commerce";
+export type ProjectType = "landing" | "website" | "commerce" | "redesign";
 export type AddOn = "brand" | "copy" | "motion" | "cms";
 export type Timeline = "normal" | "express";
 
@@ -13,6 +13,8 @@ export const PRICING_SETTINGS = {
   landing: { base: 6_500, extraPage: 3_500, minimumWithAdditionalScope: 8_000 },
   website: { base: 28_000, extraPage: 3_500 },
   commerce: { base: 45_000, extraPage: 4_500 },
+  // Rediseño inicia arriba de una landing: contempla diagnóstico y adaptación.
+  redesign: { base: 8_000, extraPage: 3_500 },
   addOns: { brand: 14_000, copy: 6_500, motion: 7_500, cms: 9_000 },
   expressMultiplier: 1.25,
   estimateRangePercent: 0.1,
@@ -46,6 +48,13 @@ export const PROJECT_TYPES: Array<{
     note: "Catálogo y checkout",
     base: PRICING_SETTINGS.commerce.base,
     pricePerExtraPage: PRICING_SETTINGS.commerce.extraPage,
+  },
+  {
+    id: "redesign",
+    label: "Rediseño o actualización",
+    note: "Tu sitio actual, renovado",
+    base: PRICING_SETTINGS.redesign.base,
+    pricePerExtraPage: PRICING_SETTINGS.redesign.extraPage,
   },
 ];
 

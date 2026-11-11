@@ -11,6 +11,8 @@ export default function QuoteCalculator() {
   const {
     projectName,
     setProjectName,
+    websiteUrl,
+    setWebsiteUrl,
     projectType,
     setProjectType,
     pages,
@@ -29,7 +31,7 @@ export default function QuoteCalculator() {
       className="quote-section section-shell section-space"
     >
       <div className="quote-heading">
-        <p className="section-index">02 / Cotizador rápido</p>
+        <p className="section-index">03 / Cotizador rápido</p>
         <h2>
           Una cifra clara,
           <br />
@@ -44,7 +46,7 @@ export default function QuoteCalculator() {
         <form className="quote-form">
           <fieldset>
             <legend>
-              <span>01</span> ¿Qué vamos a construir?
+              <span>01</span> ¿Qué necesita tu proyecto?
             </legend>
             <div className="option-grid type-grid">
               {PROJECT_TYPES.map((type) => (
@@ -83,13 +85,31 @@ export default function QuoteCalculator() {
                 autoComplete="organization"
               />
             </label>
+            {projectType === "redesign" && (
+              <label className="project-name-field" htmlFor="website-url">
+                <span>
+                  Link de tu sitio actual <small>Opcional</small>
+                </span>
+                <input
+                  id="website-url"
+                  type="url"
+                  value={websiteUrl}
+                  onChange={(event) => setWebsiteUrl(event.target.value)}
+                  placeholder="https://tusitio.com"
+                  maxLength={200}
+                  inputMode="url"
+                />
+              </label>
+            )}
           </fieldset>
           <fieldset>
             <legend>
               <span>02</span> ¿Qué tan grande?
             </legend>
             <div className="range-row">
-              <label htmlFor="pages">Número de páginas</label>
+              <label htmlFor="pages">
+                {projectType === "redesign" ? "Páginas a renovar" : "Número de páginas"}
+              </label>
               <output htmlFor="pages">{pages}</output>
             </div>
             <input
@@ -162,14 +182,14 @@ export default function QuoteCalculator() {
           <div className="estimate-range">
             <span>Rango probable</span>
             <b>
-              {formatMoney(estimate * (1 - PRICING_SETTINGS.estimateRangePercent))} — {formatMoney(estimate * (1 + PRICING_SETTINGS.estimateRangePercent))}
+              {formatMoney(estimate * (1 - PRICING_SETTINGS.estimateRangePercent))} – {formatMoney(estimate * (1 + PRICING_SETTINGS.estimateRangePercent))}
             </b>
           </div>
           <ul>
             <li>Dirección de proyecto</li>
             <li>Diseño responsive</li>
             <li>Desarrollo en Next.js</li>
-            <li>Deploy en Vercel</li>
+            <li>Publicación en Vercel</li>
           </ul>
           <a
             className="button button-light button-whatsapp"
@@ -183,7 +203,7 @@ export default function QuoteCalculator() {
           </a>
           <small>
             * Estimación orientativa. Alcance y precio final se confirman en
-            propuesta.
+            la propuesta.
           </small>
         </aside>
       </div>

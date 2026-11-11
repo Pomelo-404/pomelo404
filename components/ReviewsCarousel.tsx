@@ -101,7 +101,7 @@ export default function ReviewsCarousel() {
     <section id="reviews" className="reviews section-space">
       <div className="reviews-heading section-shell">
         <div>
-          <p className="section-index light">04 / Reviews</p>
+          <p className="section-index light">05 / Reviews</p>
           <h2>
             Clientes contentos.
             <br />
