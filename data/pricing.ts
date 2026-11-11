@@ -3,14 +3,14 @@ export type AddOn = "brand" | "copy" | "motion" | "cms";
 export type Timeline = "normal" | "express";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║ AJUSTES DE PRECIOS · editar únicamente estos valores en MXN          ║
+ * ╔═════════════════════════════════════════════════════════════════════════╗
+ * ║ AJUSTES DE PRECIOS · editar únicamente estos valores en MXN             ║
  * ║ El cotizador, WhatsApp y el rango estimado los consumen automáticamente.║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * ╚═════════════════════════════════════════════════════════════════════════╝
  */
 export const PRICING_SETTINGS = {
   pages: { min: 1, max: 20, rounding: 1_000 },
-  landing: { base: 6_500, extraPage: 3_500, minimumWithAdditionalScope: 8_000 },
+  landing: { base: 6_000, extraPage: 3_500, minimumWithAdditionalScope: 8_000 },
   website: { base: 28_000, extraPage: 3_500 },
   commerce: { base: 45_000, extraPage: 4_500 },
   // Rediseño inicia arriba de una landing: contempla diagnóstico y adaptación.
