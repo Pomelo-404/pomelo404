@@ -2,26 +2,31 @@
 
 import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "@/components/ArrowIcon";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import HeroPomelo from "@/components/HeroPomelo";
 import Iso from "@/components/Iso";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import ProjectShowcase from "@/components/ProjectShowcase";
+import { WHATSAPP_NUMBER } from "@/lib/quotation";
 
 /**
  * Interruptor temporal: cambia a true cuando haya testimonios reales aprobados.
  * Conserva el carrusel y sus datos listos para volver a publicarlos.
  */
 const SHOW_REVIEWS = false;
+const CONTACT_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola pomelo404, quiero platicar de mi proyecto.")}`;
+const REDESIGN_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola pomelo404, ya tengo un sitio y quiero renovarlo.")}`;
 
 const desktopMarqueeItems = [
   "Diseño con intención",
   "Desarrollo Next.js",
   "Movimiento con sabor",
+  "Sitios que se renuevan",
   "Ideas que convierten",
 ];
 
-const mobileMarqueeItems = ["Diseño web", "Next.js", "Con intención"];
+const mobileMarqueeItems = ["Diseño web", "Rediseño", "Next.js", "Con intención"];
 
 function MarqueeTrack({
   items,
@@ -164,6 +169,9 @@ export default function Home() {
           className={menuOpen ? "nav-links is-open" : "nav-links"}
           aria-label="Navegación principal"
         >
+          <a href="#que-hacemos" onClick={() => setMenuOpen(false)}>
+            Qué hacemos
+          </a>
           <a href="#proyectos" onClick={() => setMenuOpen(false)}>
             Proyectos
           </a>
@@ -203,7 +211,7 @@ export default function Home() {
             Sitios que hacen <em>click.</em>
           </h1>
           <p className="hero-lede">
-            Diseñamos y desarrollamos experiencias digitales frescas para marcas
+            Creamos sitios nuevos y renovamos los que ya existen, para marcas
             que quieren verse claras, vivas y difíciles de olvidar.
           </p>
           <div className="hero-actions">
@@ -234,7 +242,7 @@ export default function Home() {
           <div className="hero-satellite"><i /></div>
         </div>
         <div className="hero-proof">
-          <b>Strategy · Design · Next.js</b>
+          <b>Estrategia · Diseño · Next.js</b>
           <span>Diseñado para convertir, construido para durar.</span>
         </div>
       </section>
@@ -244,10 +252,56 @@ export default function Home() {
         <MarqueeTrack items={mobileMarqueeItems} variant="mobile" />
       </div>
 
+      <section id="que-hacemos" className="what-we-do section-shell section-space" aria-labelledby="what-we-do-title">
+        <div className="what-we-do-intro">
+          <p className="section-index">01 / Qué hacemos</p>
+          <h2 id="what-we-do-title">
+            Empezamos desde cero
+            <br />
+            <em>o desde donde ya estás.</em>
+          </h2>
+          <p>
+            pomelo404 es un estudio web independiente en CDMX. Diseñamos y
+            desarrollamos sitios nuevos, sí. Pero también tomamos el que ya
+            tienes —el que se quedó en otra época, carga lento o ya no cuenta
+            bien tu historia— y lo actualizamos, lo adaptamos y lo volvemos a
+            poner a trabajar. No importa si tu web nace hoy o nació hace cinco
+            años: lo que importa es que haga click con quien la visita.
+          </p>
+        </div>
+        <div className="what-we-do-grid">
+          <article>
+            <span>01</span>
+            <h3>Crear</h3>
+            <em>Desde la semilla.</em>
+            <p>Landing pages, sitios de marca y e-commerce desde cero, con estrategia, diseño y código apuntando a lo mismo: que la gente entienda y actúe.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Actualizar</h3>
+            <em>Más jugo al mismo pomelo.</em>
+            <p>Tu sitio actual, puesto al día. Renovamos diseño, contenido, velocidad y SEO sin tirar lo que ya funciona ni hacerte empezar de nuevo.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Adaptar</h3>
+            <em>Otra receta, mismo sabor.</em>
+            <p>Cuando el sitio ya no encaja con la marca, el negocio o la tecnología, lo migramos, reestructuramos y conectamos con lo que necesitas hoy.</p>
+          </article>
+        </div>
+        <div className="what-we-do-actions">
+          <p>¿Tienes un sitio y no sabes si rehacerlo o arreglarlo? Mándanos el link y te decimos qué conviene.</p>
+          <div>
+            <a className="text-link" href="#cotizador">Cotizar un rediseño <span><ArrowIcon direction="down-right" /></span></a>
+            <a className="text-link" href={REDESIGN_WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <span><ArrowIcon direction="up-right" /></span></a>
+          </div>
+        </div>
+      </section>
+
       <section id="proyectos" className="projects section-shell section-space">
         <div className="section-intro">
           <div>
-            <p className="section-index">01 / Proyectos</p>
+            <p className="section-index">02 / Proyectos</p>
             <h2>
               Trabajo que
               <br />
@@ -256,7 +310,7 @@ export default function Home() {
           </div>
           <p>
             Identidad, UX y código trabajando juntos. Una selección de sitios
-            hechos para conectar y convertir.
+            hechos y rehechos para conectar y convertir.
           </p>
         </div>
         <ProjectShowcase />
@@ -267,7 +321,7 @@ export default function Home() {
       {/* Alcance visible: los extras del cotizador se explican antes del contacto. */}
       <section id="alcance" className="quote-inclusions section-shell" aria-labelledby="inclusions-title">
         <div className="quote-inclusions-intro">
-          <p className="section-index">03 / Qué incluye</p>
+          <p className="section-index">04 / Qué incluye</p>
           <h2 id="inclusions-title">
             Claridad desde
             <br />
@@ -284,7 +338,7 @@ export default function Home() {
           <ul>
             <li>Dirección de proyecto y una ruta de trabajo clara.</li>
             <li>Arquitectura de información y diseño responsive para móvil y escritorio.</li>
-            <li>Desarrollo en Next.js, pruebas funcionales y publicación en Vercel.</li>
+            <li>Desarrollo en Next.js, rápido, seguro y fácil de mantener; pruebas funcionales y publicación en Vercel.</li>
             <li>Una ronda de ajustes para cerrar contenido, detalles visuales y comportamiento.</li>
             <li>Entrega organizada para que el sitio pueda crecer contigo después del lanzamiento.</li>
           </ul>
@@ -331,6 +385,13 @@ export default function Home() {
               de usar y una guía breve para que tu equipo tenga autonomía.
             </p>
           </article>
+          <article className="inclusion-redesign">
+            <span>05</span>
+            <h3>Rediseño y actualización</h3>
+            <p>
+              Tomamos el sitio que ya tienes y lo ponemos al día sin empezar de cero cuando no hace falta. Revisamos qué funciona y qué estorba, renovamos diseño, contenido y velocidad, y migramos lo que valga la pena conservar. Tú decides cuánto cambiar; nosotros hacemos que el resultado se sienta nuevo y siga siendo tuyo.
+            </p>
+          </article>
         </div>
       </section>
       <div className="quote-inclusions-divider section-shell" aria-hidden="true">
@@ -347,18 +408,28 @@ export default function Home() {
           <span>¡Di hola!</span>
         </div>
         <div className="contact-copy">
-          <p className="section-index">{SHOW_REVIEWS ? "05" : "04"} / Contacto</p>
+          <p className="section-index">{SHOW_REVIEWS ? "06" : "05"} / Contacto</p>
           <h2>
             ¿Traes una
             <br />
             <em>buena idea?</em>
           </h2>
           <p>
-            Cuéntanos qué quieres lanzar, mejorar o transformar. Respondemos en
-            1–2 días hábiles.
+            Cuéntanos qué quieres lanzar, mejorar o transformar. Si ya tienes
+            sitio, mándanos el link para conocerlo. Respondemos en 1–2 días
+            hábiles.
           </p>
           <a href="mailto:hola@pomelo404.com" className="contact-email">
             hola@pomelo404.com <span><ArrowIcon direction="up-right" /></span>
+          </a>
+          <a
+            className="contact-whatsapp"
+            href={CONTACT_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <WhatsAppIcon />
+            Escribir por WhatsApp
           </a>
         </div>
       </section>
@@ -370,8 +441,8 @@ export default function Home() {
         </a>
         <p>Webs frescas, sin partes amargas.</p>
         <div>
-          <span>© 2026</span>
-          <a href="/legacy/">Versión básica</a>
+          <span>© 2026 pomelo404</span>
+          <a href="/legacy/">Versión ligera</a>
           <a href="#inicio">Volver arriba <ArrowIcon direction="up" /></a>
         </div>
       </footer>
