@@ -2,20 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "@/components/ArrowIcon";
-import WhatsAppIcon from "@/components/WhatsAppIcon";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import HeroPomelo from "@/components/HeroPomelo";
 import Iso from "@/components/Iso";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import ProjectShowcase from "@/components/ProjectShowcase";
-import { WHATSAPP_NUMBER } from "@/lib/quotation";
 
 /**
  * Interruptor temporal: cambia a true cuando haya testimonios reales aprobados.
  * Conserva el carrusel y sus datos listos para volver a publicarlos.
  */
 const SHOW_REVIEWS = false;
-const CONTACT_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola pomelo404, quiero platicar de mi proyecto.")}`;
 
 const desktopMarqueeItems = [
   "Diseño con intención",
@@ -362,15 +359,6 @@ export default function Home() {
           </p>
           <a href="mailto:hola@pomelo404.com" className="contact-email">
             hola@pomelo404.com <span><ArrowIcon direction="up-right" /></span>
-          </a>
-          <a
-            className="contact-whatsapp"
-            href={CONTACT_WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <WhatsAppIcon />
-            Escribir por WhatsApp
           </a>
         </div>
       </section>

@@ -1416,15 +1416,6 @@ html[data-theme="dark"] .quote-result li::before {
   background: var(--lime);
   color: var(--ink);
 }
-/* En oscuro --ink es claro; el verde necesita tinta fija para conservar contraste. */
-html[data-theme="dark"] .inclusion-grid article:hover {
-  color: #151515;
-}
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) .inclusion-grid article:hover {
-    color: #151515;
-  }
-}
 .inclusion-grid h3 {
   margin: 38px 0 8px;
   font-size: 17px;
@@ -1702,30 +1693,6 @@ html[data-theme="dark"] .review-card:nth-child(4n) {
 .contact-email span {
   color: var(--orange);
   font-size: 25px;
-}
-.contact-whatsapp {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  width: fit-content;
-  min-height: 42px;
-  margin-top: 18px;
-  padding: 10px 17px;
-  border-radius: 100px;
-  background: var(--whatsapp);
-  color: var(--whatsapp-ink);
-  font: 700 10px var(--font-geist-mono);
-  letter-spacing: 0.02em;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.contact-whatsapp:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 rgba(9, 45, 24, 0.2);
-}
-.contact-whatsapp .whatsapp-icon {
-  width: 17px;
-  height: 17px;
 }
 .site-footer {
   border-top: 1px solid var(--line);
